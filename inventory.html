@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory | Caru Cars - Buy Here Pay Here Miami, FL</title>
+    <meta name="description" content="Browse our selection of quality used cars. Buy Here Pay Here financing available. No credit check needed. Caru Cars Miami.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">Espa&ntilde;ol</button>
+</div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container top-bar-inner">
+        <div class="top-bar-left">
+            <a href="tel:7864284008" class="top-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                (786) 428-4008
+            </a>
+            <span class="top-divider">|</span>
+            <a href="https://maps.google.com/?q=9600+NW+7th+Ave+Miami+FL+33150" target="_blank" class="top-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                9600 NW 7th Ave, Miami FL 33150
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="nav-logo"><span class="logo-caru">CARU</span><span class="logo-cars">CARS</span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link" data-en="Home" data-es="Inicio">Home</a>
+            <a href="inventory.html" class="nav-link active" data-en="Inventory" data-es="Inventario">Inventory</a>
+            <a href="financing.html" class="nav-link" data-en="Financing" data-es="Financiamiento">Financing</a>
+            <a href="about.html" class="nav-link" data-en="About Us" data-es="Nosotros">About Us</a>
+            <a href="contact.html" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+        </div>
+        <a href="tel:7864284008" class="nav-cta">(786) 428-4008</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="page-hero">
+    <h1 data-en="Our Inventory" data-es="Nuestro Inventario">Our Inventory</h1>
+    <p data-en="Quality cars with Buy Here Pay Here financing. No credit check needed." data-es="Carros de calidad con financiamiento Compra Aqu&iacute; Paga Aqu&iacute;. Sin chequeo de cr&eacute;dito.">Quality cars, affordable payments. Buy Here Pay Here &mdash; no credit check needed.</p>
+</section>
+
+<!-- Filters -->
+<div class="container">
+    <div class="filter-bar">
+        <select class="filter-select" data-en="All Makes" data-es="Todas las Marcas">
+            <option>All Makes</option>
+            <option>Toyota</option>
+            <option>Honda</option>
+            <option>Nissan</option>
+            <option>Hyundai</option>
+            <option>Kia</option>
+            <option>Ford</option>
+            <option>Chevrolet</option>
+        </select>
+        <select class="filter-select">
+            <option data-en="All Types" data-es="Todos los Tipos">All Types</option>
+            <option>Sedan</option>
+            <option>SUV</option>
+            <option>Truck</option>
+            <option>Van</option>
+        </select>
+        <select class="filter-select">
+            <option data-en="Max Price" data-es="Precio M&aacute;x">Max Price</option>
+            <option>$10,000</option>
+            <option>$15,000</option>
+            <option>$20,000</option>
+            <option>$25,000</option>
+        </select>
+        <button class="filter-btn" data-en="Search" data-es="Buscar">Search</button>
+    </div>
+</div>
+
+<!-- Inventory Grid -->
+<section class="inventory-section">
+    <div class="container">
+        <div class="inventory-grid" id="inventoryGrid">
+            <!-- These are placeholder cards. Will be replaced by DealerCenter feed data -->
+            <div class="car-card visible">
+                <div class="car-img-wrap">
+                    <div class="car-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
+                    </div>
+                    <span class="car-badge" data-en="Low Down!" data-es="&iexcl;Bajo Inicial!">Low Down!</span>
+                </div>
+                <div class="car-info">
+                    <h3>2019 Toyota Corolla LE</h3>
+                    <div class="car-meta">68,420 mi &bull; Sedan &bull; Automatic</div>
+                    <div class="car-price-row">
+                        <span class="car-price">$12,995</span>
+                        <span class="car-payment" data-en="~$75/week" data-es="~$75/sem">~$75/week</span>
+                    </div>
+                </div>
+            </div>
+            <div class="car-card visible">
+                <div class="car-img-wrap">
+                    <div class="car-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
+                    </div>
+                    <span class="car-badge">Popular!</span>
+                </div>
+                <div class="car-info">
+                    <h3>2018 Honda Civic LX</h3>
+                    <div class="car-meta">72,100 mi &bull; Sedan &bull; Automatic</div>
+                    <div class="car-price-row">
+                        <span class="car-price">$13,500</span>
+                        <span class="car-payment" data-en="~$78/week" data-es="~$78/sem">~$78/week</span>
+                    </div>
+                </div>
+            </div>
+            <div class="car-card visible">
+                <div class="car-img-wrap">
+                    <div class="car-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
+                    </div>
+                    <span class="car-badge" data-en="Great Deal!" data-es="&iexcl;Gran Oferta!">Great Deal!</span>
+                </div>
+                <div class="car-info">
+                    <h3>2020 Nissan Sentra SV</h3>
+                    <div class="car-meta">45,800 mi &bull; Sedan &bull; Automatic</div>
+                    <div class="car-price-row">
+                        <span class="car-price">$14,200</span>
+                        <span class="car-payment" data-en="~$82/week" data-es="~$82/sem">~$82/week</span>
+                    </div>
+                </div>
+            </div>
+            <div class="car-card visible">
+                <div class="car-img-wrap">
+                    <div class="car-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
+                    </div>
+                    <span class="car-badge">SUV!</span>
+                </div>
+                <div class="car-info">
+                    <h3>2017 Toyota RAV4 XLE</h3>
+                    <div class="car-meta">81,300 mi &bull; SUV &bull; Automatic</div>
+                    <div class="car-price-row">
+                        <span class="car-price">$15,900</span>
+                        <span class="car-payment" data-en="~$89/week" data-es="~$89/sem">~$89/week</span>
+                    </div>
+                </div>
+            </div>
+            <div class="car-card visible">
+                <div class="car-img-wrap">
+                    <div class="car-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
+                    </div>
+                </div>
+                <div class="car-info">
+                    <h3>2018 Hyundai Elantra</h3>
+                    <div class="car-meta">59,200 mi &bull; Sedan &bull; Automatic</div>
+                    <div class="car-price-row">
+                        <span class="car-price">$11,500</span>
+                        <span class="car-payment" data-en="~$65/week" data-es="~$65/sem">~$65/week</span>
+                    </div>
+                </div>
+            </div>
+            <div class="car-card visible">
+                <div class="car-img-wrap">
+                    <div class="car-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
+                    </div>
+                </div>
+                <div class="car-info">
+                    <h3>2019 Kia Forte LXS</h3>
+                    <div class="car-meta">52,700 mi &bull; Sedan &bull; Automatic</div>
+                    <div class="car-price-row">
+                        <span class="car-price">$12,800</span>
+                        <span class="car-payment" data-en="~$73/week" data-es="~$73/sem">~$73/week</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+    <div class="container cta-inner">
+        <div class="cta-text">
+            <h2 data-en="Don't See What You're Looking For?" data-es="&iquest;No Ves Lo Que Buscas?">Don't See What You're Looking For?</h2>
+            <p data-en="New cars arrive every week. Call us and we'll help you find exactly what you need." data-es="Llegan carros nuevos cada semana. Ll&aacute;manos y te ayudaremos a encontrar exactamente lo que necesitas.">New cars arrive every week. Call us and we'll help you find exactly what you need.</p>
+        </div>
+        <div class="cta-actions">
+            <a href="tel:7864284008" class="btn btn-white">(786) 428-4008</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><span class="logo-caru">CARU</span><span class="logo-cars">CARS</span></div>
+                <p class="footer-tagline" data-en="Buy Here Pay Here dealer proudly serving Miami. No credit check, flexible payments, quality cars." data-es="Dealer Compra Aqu&iacute; Paga Aqu&iacute; sirviendo a Miami con orgullo. Sin chequeo de cr&eacute;dito, pagos flexibles, carros de calidad.">Buy Here Pay Here dealer proudly serving Miami. No credit check, flexible payments, quality cars.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Quick Links" data-es="Enlaces R&aacute;pidos">Quick Links</h4>
+                <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
+                <a href="inventory.html" data-en="Inventory" data-es="Inventario">Inventory</a>
+                <a href="financing.html" data-en="Financing" data-es="Financiamiento">Financing</a>
+                <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
+                <a href="contact.html" data-en="Contact" data-es="Contacto">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Contact" data-es="Contacto">Contact</h4>
+                <a href="tel:7864284008">(786) 428-4008</a>
+                <a href="https://maps.google.com/?q=9600+NW+7th+Ave+Miami+FL+33150" target="_blank">9600 NW 7th Ave<br>Miami, FL 33150</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Hours" data-es="Horario">Hours</h4>
+                <p data-en="Monday - Saturday" data-es="Lunes - S&aacute;bado">Monday - Saturday</p>
+                <p>9:00 AM - 7:00 PM</p>
+                <p data-en="Sunday: Closed" data-es="Domingo: Cerrado">Sunday: Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CARUCARS LLC. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></p>
+        </div>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
