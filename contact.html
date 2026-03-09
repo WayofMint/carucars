@@ -45,6 +45,7 @@
             <a href="financing.html" class="nav-link" data-en="Financing" data-es="Financiamiento">Financing</a>
             <a href="about.html" class="nav-link" data-en="About Us" data-es="Nosotros">About Us</a>
             <a href="contact.html" class="nav-link active" data-en="Contact" data-es="Contacto">Contact</a>
+            <div class="nav-lang-toggle"><button class="nav-lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button><button class="nav-lang-btn" data-lang="es" onclick="setLanguage('es')">Español</button></div>
         </div>
         <a href="tel:7864284008" class="nav-cta">(786) 428-4008</a>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -120,6 +121,10 @@
                             <label for="email" data-en="Email (optional)" data-es="Correo (opcional)">Email (optional)</label>
                             <input type="email" id="email" name="email" data-en="you@email.com" data-es="tu@correo.com" placeholder="you@email.com">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipcode" data-en="Zip Code" data-es="C&oacute;digo Postal">Zip Code</label>
+                        <input type="text" id="zipcode" name="zipcode" data-en="e.g. 33150" data-es="ej. 33150" placeholder="e.g. 33150" inputmode="numeric" pattern="[0-9]{5}" maxlength="5">
                     </div>
                     <div class="form-group">
                         <label for="interest" data-en="I'm Interested In" data-es="Estoy Interesado En">I'm Interested In</label>
@@ -219,6 +224,7 @@
     </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js?v=2"></script>
+<script src="maria-chat.js"></script>
 </body>
 </html>

@@ -10,8 +10,8 @@ function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('carucars-lang', lang);
 
-    // Update toggle buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    // Update toggle buttons (fixed + mobile nav)
+    document.querySelectorAll('.lang-btn, .nav-lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 
@@ -153,3 +153,6 @@ window.addEventListener('scroll', () => {
         heroBg.style.transform = `scale(${1 + scrolled * 0.0002}) translateY(${scrolled * 0.15}px)`;
     }
 }, { passive: true });
+
+
+// Chat bubble + lead popup loaded from chat.js
