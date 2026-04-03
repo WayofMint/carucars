@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Financing | Caru Cars - Buy Here Pay Here Miami, FL</title>
+    <meta name="description" content="Apply for Buy Here Pay Here financing at Caru Cars Miami. No credit check. Fill out our secure application and get approved today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="apply.css">
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">Espa&ntilde;ol</button>
+</div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container top-bar-inner">
+        <div class="top-bar-left">
+            <a href="tel:7864284008" class="top-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                (786) 428-4008
+            </a>
+            <span class="top-divider">|</span>
+            <a href="https://maps.google.com/?q=9600+NW+7th+Ave+Miami+FL+33150" target="_blank" class="top-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                9600 NW 7th Ave, Miami FL 33150
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="nav-logo"><span class="logo-caru">CARU</span><span class="logo-cars">CARS</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
+            <a href="inventory.html" data-en="Inventory" data-es="Inventario">Inventory</a>
+            <a href="financing.html" class="active" data-en="Financing" data-es="Financiamiento">Financing</a>
+            <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
+            <a href="contact.html" data-en="Contact" data-es="Contacto">Contact</a>
+            <div class="nav-lang-toggle"><button class="nav-lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button><button class="nav-lang-btn" data-lang="es" onclick="setLanguage('es')">Espa&ntilde;ol</button></div>
+        </div>
+        <a href="tel:7864284008" class="nav-cta">(786) 428-4008</a>
+    </div>
+</nav>
+
+<!-- Application Header -->
+<section class="app-hero">
+    <div class="container">
+        <a href="financing.html" class="app-back">&larr; <span data-en="Back to Financing" data-es="Volver a Financiamiento">Back to Financing</span></a>
+        <div class="app-hero-content">
+            <div class="app-shield">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h1 data-en="Secure Finance Application" data-es="Solicitud de Financiamiento Segura">Secure Finance Application</h1>
+            <p data-en="Fill out the form below and our team will contact you within 1 business day. No credit check required." data-es="Completa el formulario y nuestro equipo te contactar&aacute; en 1 d&iacute;a h&aacute;bil. Sin chequeo de cr&eacute;dito.">Fill out the form below and our team will contact you within 1 business day. No credit check required.</p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="app-steps">
+            <div class="app-step active" data-step="1">
+                <div class="step-num">1</div>
+                <span data-en="Personal" data-es="Personal">Personal</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="app-step" data-step="2">
+                <div class="step-num">2</div>
+                <span data-en="Housing" data-es="Vivienda">Housing</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="app-step" data-step="3">
+                <div class="step-num">3</div>
+                <span data-en="Employment" data-es="Empleo">Employment</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="app-step" data-step="4">
+                <div class="step-num">4</div>
+                <span data-en="Vehicle" data-es="Veh&iacute;culo">Vehicle</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form -->
+<section class="app-form-section">
+    <div class="container" style="max-width:720px;">
+        <form id="financeApp" class="app-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+            <input type="hidden" name="subject" value="New Finance Application - Caru Cars">
+            <input type="hidden" name="from_name" value="Caru Cars Finance App">
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+            <!-- Step 1: Personal Info -->
+            <div class="form-step active" id="step1">
+                <h2 class="form-step-title" data-en="Personal Information" data-es="Informaci&oacute;n Personal">Personal Information</h2>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="First Name" data-es="Nombre">First Name <span class="req">*</span></label>
+                        <input type="text" name="first_name" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Last Name" data-es="Apellido">Last Name <span class="req">*</span></label>
+                        <input type="text" name="last_name" required placeholder="Doe">
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Phone" data-es="Tel&eacute;fono">Phone <span class="req">*</span></label>
+                        <input type="tel" name="phone" required placeholder="(786) 555-0123">
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="req">*</span></label>
+                        <input type="email" name="email" required placeholder="john@email.com">
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Date of Birth" data-es="Fecha de Nacimiento">Date of Birth <span class="req">*</span></label>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Driver's License #" data-es="# de Licencia">Driver's License #</label>
+                        <input type="text" name="drivers_license" placeholder="D123-456-78-901">
+                    </div>
+                </div>
+                <div class="form-nav">
+                    <div></div>
+                    <button type="button" class="btn btn-primary form-next" onclick="nextStep(2)" data-en="Next: Housing" data-es="Siguiente: Vivienda">Next: Housing &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Housing -->
+            <div class="form-step" id="step2">
+                <h2 class="form-step-title" data-en="Housing Information" data-es="Informaci&oacute;n de Vivienda">Housing Information</h2>
+                <div class="form-group">
+                    <label data-en="Address" data-es="Direcci&oacute;n">Address <span class="req">*</span></label>
+                    <input type="text" name="address" required placeholder="1234 Main St">
+                </div>
+                <div class="form-row three-col">
+                    <div class="form-group">
+                        <label data-en="City" data-es="Ciudad">City <span class="req">*</span></label>
+                        <input type="text" name="city" required placeholder="Miami">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="State" data-es="Estado">State <span class="req">*</span></label>
+                        <select name="state" required>
+                            <option value="">--</option>
+                            <option value="FL" selected>FL</option>
+                            <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Zip <span class="req">*</span></label>
+                        <input type="text" name="zip" required placeholder="33150" maxlength="5">
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Residence Type" data-es="Tipo de Residencia">Residence Type</label>
+                        <select name="residence_type">
+                            <option value="">Select</option>
+                            <option value="Own with Mortgage">Own with Mortgage</option>
+                            <option value="Own without Mortgage">Own without Mortgage</option>
+                            <option value="Rent">Rent</option>
+                            <option value="Live with Relative">Live with Relative</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Monthly Rent/Mortgage" data-es="Renta/Hipoteca Mensual">Monthly Rent/Mortgage <span class="req">*</span></label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" name="monthly_housing" required placeholder="1200">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Time at Residence (Years)" data-es="Tiempo en Residencia (A&ntilde;os)">Time at Residence (Years) <span class="req">*</span></label>
+                        <input type="number" name="residence_years" required placeholder="3" min="0" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Months" data-es="Meses">Months</label>
+                        <input type="number" name="residence_months" placeholder="6" min="0" max="11">
+                    </div>
+                </div>
+                <div class="form-nav">
+                    <button type="button" class="btn btn-outline form-prev" onclick="prevStep(1)">&larr; <span data-en="Back" data-es="Atr&aacute;s">Back</span></button>
+                    <button type="button" class="btn btn-primary form-next" onclick="nextStep(3)" data-en="Next: Employment" data-es="Siguiente: Empleo">Next: Employment &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Employment -->
+            <div class="form-step" id="step3">
+                <h2 class="form-step-title" data-en="Employment Information" data-es="Informaci&oacute;n de Empleo">Employment Information</h2>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Employer Name" data-es="Nombre del Empleador">Employer Name <span class="req">*</span></label>
+                        <input type="text" name="employer" required placeholder="Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Occupation / Title" data-es="Ocupaci&oacute;n / T&iacute;tulo">Occupation / Title <span class="req">*</span></label>
+                        <input type="text" name="occupation" required placeholder="Your job title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-en="Employer Address" data-es="Direcci&oacute;n del Empleador">Employer Address</label>
+                    <input type="text" name="employer_address" placeholder="123 Business Blvd, Miami FL">
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Business Phone" data-es="Tel&eacute;fono de Trabajo">Business Phone</label>
+                        <input type="tel" name="employer_phone" placeholder="(786) 555-0000">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Employment Status" data-es="Estado Laboral">Employment Status <span class="req">*</span></label>
+                        <select name="employment_status" required>
+                            <option value="">Select</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Part Time">Part Time</option>
+                            <option value="Self-Employed">Self-Employed</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Retired">Retired</option>
+                            <option value="Military">Military</option>
+                            <option value="Seasonal">Seasonal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Time on Job (Years)" data-es="Tiempo en Trabajo (A&ntilde;os)">Time on Job (Years) <span class="req">*</span></label>
+                        <input type="number" name="job_years" required placeholder="2" min="0" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Months" data-es="Meses">Months</label>
+                        <input type="number" name="job_months" placeholder="6" min="0" max="11">
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="How often are you paid?" data-es="&iquest;Con qu&eacute; frecuencia te pagan?">How often are you paid? <span class="req">*</span></label>
+                        <select name="pay_frequency" required>
+                            <option value="">Select</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Bi-Weekly">Bi-Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Yearly">Yearly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Amount per Paycheck" data-es="Monto por Cheque">Amount per Paycheck <span class="req">*</span></label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" name="paycheck_amount" required placeholder="1500">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-en="Other Monthly Income (if any)" data-es="Otros Ingresos Mensuales (si aplica)">Other Monthly Income (if any)</label>
+                    <div class="input-prefix">
+                        <span>$</span>
+                        <input type="number" name="other_income" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-nav">
+                    <button type="button" class="btn btn-outline form-prev" onclick="prevStep(2)">&larr; <span data-en="Back" data-es="Atr&aacute;s">Back</span></button>
+                    <button type="button" class="btn btn-primary form-next" onclick="nextStep(4)" data-en="Next: Vehicle" data-es="Siguiente: Veh&iacute;culo">Next: Vehicle &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Vehicle & Submit -->
+            <div class="form-step" id="step4">
+                <h2 class="form-step-title" data-en="Vehicle &amp; Down Payment" data-es="Veh&iacute;culo e Inicial">Vehicle &amp; Down Payment</h2>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Desired Loan Amount" data-es="Monto de Pr&eacute;stamo Deseado">Desired Loan Amount</label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" name="loan_amount" placeholder="15000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Down Payment Amount" data-es="Monto de Inicial">Down Payment Amount</label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" name="down_payment" placeholder="2000">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Vehicle You're Interested In" data-es="Veh&iacute;culo de Inter&eacute;s">Vehicle You're Interested In</label>
+                        <input type="text" name="vehicle_interest" placeholder="e.g. 2024 Nissan Sentra">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Desired Monthly Payment" data-es="Pago Mensual Deseado">Desired Monthly Payment</label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" name="desired_payment" placeholder="300">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-divider"></div>
+                <h3 class="form-sub-title" data-en="Trade-In (Optional)" data-es="Trade-In (Opcional)">Trade-In (Optional)</h3>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Trade-In Year/Make/Model" data-es="A&ntilde;o/Marca/Modelo del Trade-In">Trade-In Year/Make/Model</label>
+                        <input type="text" name="trade_in" placeholder="e.g. 2016 Honda Civic">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Trade-In Mileage" data-es="Millaje del Trade-In">Trade-In Mileage</label>
+                        <input type="text" name="trade_mileage" placeholder="85,000">
+                    </div>
+                </div>
+
+                <div class="form-divider"></div>
+                <div class="form-group">
+                    <label data-en="Additional Comments" data-es="Comentarios Adicionales">Additional Comments</label>
+                    <textarea name="comments" rows="3" placeholder="Anything else you'd like us to know?"></textarea>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-terms">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms_accepted" required>
+                        <span data-en="I certify that all information provided is true and complete. I authorize Carucars LLC to verify my employment and income to determine financing eligibility." data-es="Certifico que toda la informaci&oacute;n proporcionada es verdadera y completa. Autorizo a Carucars LLC a verificar mi empleo e ingresos para determinar elegibilidad de financiamiento.">I certify that all information provided is true and complete. I authorize Carucars LLC to verify my employment and income to determine financing eligibility.</span>
+                    </label>
+                </div>
+
+                <div class="form-nav">
+                    <button type="button" class="btn btn-outline form-prev" onclick="prevStep(3)">&larr; <span data-en="Back" data-es="Atr&aacute;s">Back</span></button>
+                    <button type="submit" class="btn btn-primary form-submit" data-en="Submit Application" data-es="Enviar Solicitud">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        Submit Application
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success State -->
+            <div class="form-success" id="formSuccess" style="display:none;">
+                <div class="success-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                </div>
+                <h2 data-en="Application Submitted!" data-es="&iexcl;Solicitud Enviada!">Application Submitted!</h2>
+                <p data-en="Thank you! Our finance team will review your application and contact you within 1 business day." data-es="&iexcl;Gracias! Nuestro equipo de finanzas revisar&aacute; tu solicitud y te contactar&aacute; en 1 d&iacute;a h&aacute;bil.">Thank you! Our finance team will review your application and contact you within 1 business day.</p>
+                <a href="inventory.html" class="btn btn-primary" data-en="Browse Cars While You Wait" data-es="Mira Carros Mientras Esperas">Browse Cars While You Wait</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><span class="logo-caru">CARU</span><span class="logo-cars">CARS</span></div>
+                <p class="footer-tagline" data-en="Buy Here Pay Here dealer proudly serving Miami. No credit check, flexible payments, quality cars." data-es="Dealer Compra Aqu&iacute; Paga Aqu&iacute; sirviendo a Miami con orgullo. Sin chequeo de cr&eacute;dito, pagos flexibles, carros de calidad.">Buy Here Pay Here dealer proudly serving Miami. No credit check, flexible payments, quality cars.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Quick Links" data-es="Enlaces R&aacute;pidos">Quick Links</h4>
+                <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
+                <a href="inventory.html" data-en="Inventory" data-es="Inventario">Inventory</a>
+                <a href="financing.html" data-en="Financing" data-es="Financiamiento">Financing</a>
+                <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
+                <a href="contact.html" data-en="Contact" data-es="Contacto">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Contact" data-es="Contacto">Contact</h4>
+                <a href="tel:7864284008">(786) 428-4008</a>
+                <a href="https://maps.google.com/?q=9600+NW+7th+Ave+Miami+FL+33150" target="_blank">9600 NW 7th Ave<br>Miami, FL 33150</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-en="Hours" data-es="Horario">Hours</h4>
+                <p data-en="Monday - Saturday" data-es="Lunes - S&aacute;bado">Monday - Saturday</p>
+                <p>9:00 AM - 7:00 PM</p>
+                <p data-en="Sunday: Closed" data-es="Domingo: Cerrado">Sunday: Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CARUCARS LLC. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></p>
+        </div>
+    </div>
+</footer>
+
+<script src="main.js?v=3"></script>
+<script>
+// Multi-step form logic
+var currentStep = 1;
+var totalSteps = 4;
+
+function nextStep(step) {
+    // Validate current step required fields
+    var currentFields = document.getElementById('step' + currentStep).querySelectorAll('[required]');
+    var valid = true;
+    currentFields.forEach(function(f) {
+        if (!f.value.trim()) { f.classList.add('error'); valid = false; }
+        else { f.classList.remove('error'); }
+    });
+    if (!valid) return;
+
+    document.getElementById('step' + currentStep).classList.remove('active');
+    document.getElementById('step' + step).classList.add('active');
+    currentStep = step;
+    updateSteps();
+    window.scrollTo({ top: document.querySelector('.app-steps').offsetTop - 100, behavior: 'smooth' });
+}
+
+function prevStep(step) {
+    document.getElementById('step' + currentStep).classList.remove('active');
+    document.getElementById('step' + step).classList.add('active');
+    currentStep = step;
+    updateSteps();
+    window.scrollTo({ top: document.querySelector('.app-steps').offsetTop - 100, behavior: 'smooth' });
+}
+
+function updateSteps() {
+    document.querySelectorAll('.app-step').forEach(function(s) {
+        var n = parseInt(s.dataset.step);
+        s.classList.remove('active', 'completed');
+        if (n === currentStep) s.classList.add('active');
+        if (n < currentStep) s.classList.add('completed');
+    });
+    document.querySelectorAll('.step-line').forEach(function(l, i) {
+        l.classList.toggle('completed', (i + 1) < currentStep);
+    });
+}
+
+// Form submission
+document.getElementById('financeApp').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    var data = new FormData(form);
+
+    fetch(form.action, { method: 'POST', body: data })
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+        if (d.success) {
+            form.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            document.querySelector('.app-steps').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    })
+    .catch(function() {
+        alert('Something went wrong. Please call us at (786) 428-4008.');
+    });
+});
+
+// Add error class removal on input
+document.querySelectorAll('.app-form input, .app-form select').forEach(function(el) {
+    el.addEventListener('input', function() { this.classList.remove('error'); });
+});
+</script>
+</body>
+</html>

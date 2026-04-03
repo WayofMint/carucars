@@ -1,6 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Page Logic
    Filtering, sorting, rendering
+   Powered by DealerCenter feed
    ============================================ */
 
 (function() {
@@ -39,35 +40,30 @@
         return m.toLocaleString('en-US') + ' mi';
     }
 
-    function getWeeklyPayment(price) {
-        // Rough estimate: 48 month term, ~15% APR for BHPH
-        const monthly = price * 0.028;
-        return Math.round(monthly / 4.33);
-    }
-
     function getBadge(car) {
         if (car.miles < 15000) return { en: "Low Miles!", es: "\u00a1Bajo Millaje!" };
         if (car.price < 8000) return { en: "Great Deal!", es: "\u00a1Gran Oferta!" };
-        if (car.year >= 2023) return { en: "Like New!", es: "\u00a1Como Nuevo!" };
+        if (car.year >= 2024) return { en: "Like New!", es: "\u00a1Como Nuevo!" };
         if (car.type === "Truck") return { en: "Truck!", es: "\u00a1Truck!" };
-        if (car.make === "Porsche" || car.make === "Maserati" || car.make === "Cadillac" || car.make === "Land Rover") return { en: "Luxury!", es: "\u00a1Lujo!" };
+        if (['Porsche','Maserati','Cadillac','Land Rover','Mercedes-Benz','Lincoln','INFINITI','BMW','Audi','Lexus'].includes(car.make)) return { en: "Luxury!", es: "\u00a1Lujo!" };
         return null;
     }
 
     function getColorDot(color) {
         const map = {
-            'Black': '#222', 'White': '#f0f0f0', 'Gray': '#888', 'Silver': '#c0c0c0',
-            'Blue': '#2563eb', 'Red': '#dc2626', 'Brown': '#92400e', 'Orange': '#ea580c',
-            'Beige': '#d4a574', 'Green': '#16a34a'
+            'Black': '#222', 'White': '#f0f0f0', 'Gray': '#888', 'Grey': '#888',
+            'Silver': '#c0c0c0', 'Blue': '#2563eb', 'Red': '#dc2626', 'Brown': '#92400e',
+            'Orange': '#ea580c', 'Beige': '#d4a574', 'Green': '#16a34a', 'Gold': '#b8860b',
+            'Maroon': '#800000', 'Burgundy': '#722F37', 'Tan': '#d2b48c'
         };
         return map[color] || '#ccc';
     }
 
     function renderCard(car, index) {
         const badge = getBadge(car);
-        const weekly = getWeeklyPayment(car.price);
         const lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
         const hasImg = car.img && car.img.length > 0;
+        const photoCount = car.photos ? car.photos.length : 0;
 
         return `
         <a href="vehicle.html?stock=${car.stock}" class="car-card-link">
@@ -83,6 +79,7 @@
                     </div>`
                 }
                 <div class="car-year-tag">${car.year}</div>
+                ${photoCount > 1 ? `<div class="car-photo-count"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> ${photoCount}</div>` : ''}
             </div>
             <div class="car-info">
                 <div class="car-title-row">
@@ -129,7 +126,7 @@
         // Sort
         switch (sort) {
             case 'newest':
-                filtered.sort((a, b) => b.year - a.year || a.price - b.price);
+                filtered.sort((a, b) => b.year - a.year || b.price - a.price);
                 break;
             case 'price-low':
                 filtered.sort((a, b) => a.price - b.price);
