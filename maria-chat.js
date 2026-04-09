@@ -128,12 +128,27 @@
         var phone = document.getElementById('leadPhone').value;
         var email = document.getElementById('leadEmail').value;
         var zip = document.getElementById('leadZip').value;
-        console.log('Lead captured:', { name: name, phone: phone, email: email, zip: zip });
 
-        document.getElementById('leadForm').style.display = 'none';
-        document.getElementById('leadThankYou').style.display = 'flex';
+        var formData = new FormData();
+        formData.append('access_key', '2521447a-cb11-4639-b08f-9c11d8cb7cec');
+        formData.append('subject', 'New Lead - Caru Cars Chat');
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('email', email || 'N/A');
+        formData.append('zip', zip || 'N/A');
 
-        setTimeout(function() { closeLeadPopup(); }, 3000);
+        fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                document.getElementById('leadForm').style.display = 'none';
+                document.getElementById('leadThankYou').style.display = 'flex';
+                setTimeout(function() { closeLeadPopup(); }, 3000);
+            })
+            .catch(function() {
+                document.getElementById('leadForm').style.display = 'none';
+                document.getElementById('leadThankYou').style.display = 'flex';
+                setTimeout(function() { closeLeadPopup(); }, 3000);
+            });
     };
 
     // Close on Escape

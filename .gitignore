@@ -1,1 +1,6 @@
 .DS_Store
+dealercenter_feed.csv
+build-inventory.py
+*.env
+*.env.*
+.env.local

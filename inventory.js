@@ -17,6 +17,8 @@
 
     if (!grid || typeof INVENTORY === 'undefined') return;
 
+    function esc(s) { var d = document.createElement('div'); d.appendChild(document.createTextNode(s || '')); return d.innerHTML; }
+
     // Filter out $0 price (not for sale) vehicles
     const inventory = INVENTORY.filter(c => c.price > 0);
 
@@ -66,15 +68,15 @@
         const photoCount = car.photos ? car.photos.length : 0;
 
         return `
-        <a href="vehicle.html?stock=${car.stock}" class="car-card-link">
+        <a href="vehicle.html?stock=${esc(car.stock)}" class="car-card-link">
         <div class="car-card" style="animation-delay: ${index * 60}ms">
             <div class="car-img-wrap">
                 ${hasImg ?
-                    `<img src="${car.img}" alt="${car.year} ${car.make} ${car.model}" class="car-img" loading="lazy">` :
+                    `<img src="${car.img}" alt="${car.year} ${esc(car.make)} ${esc(car.model)}" class="car-img" loading="lazy">` :
                     `<div class="car-img-placeholder">
                         <div class="car-placeholder-inner">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M17 17m-2 0a2 2 0 104 0 2 2 0 10-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 012 2v4h-2"/><path d="M9 17h6"/></svg>
-                            <span class="placeholder-text">${car.year} ${car.make}</span>
+                            <span class="placeholder-text">${car.year} ${esc(car.make)}</span>
                         </div>
                     </div>`
                 }
@@ -83,7 +85,7 @@
             </div>
             <div class="car-info">
                 <div class="car-title-row">
-                    <h3>${car.make} ${car.model}</h3>
+                    <h3>${esc(car.make)} ${esc(car.model)}</h3>
                 </div>
                 <div class="car-specs">
                     <span class="car-spec">
@@ -92,11 +94,11 @@
                     </span>
                     <span class="car-spec">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                        ${car.type}
+                        ${esc(car.type)}
                     </span>
                     <span class="car-spec">
                         <span class="color-dot" style="background:${getColorDot(car.extColor)};${car.extColor === 'White' ? 'border:1px solid #ccc;' : ''}"></span>
-                        ${car.extColor}
+                        ${esc(car.extColor)}
                     </span>
                 </div>
                 <div class="car-divider"></div>
