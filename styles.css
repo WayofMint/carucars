@@ -2041,6 +2041,29 @@ body {
     text-align: center;
 }
 
+/* ---- BHPH Badge ---- */
+.bhph-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    padding: 14px 24px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.bhph-badge svg {
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.8);
+}
+
 /* ---- New elements (all viewports) ---- */
 .vehicle-header-row {
     display: flex;
@@ -2185,6 +2208,14 @@ body {
     .vehicle-info {
         padding: 16px 20px 20px;
     }
+    .bhph-badge {
+        font-size: 0.72rem;
+        padding: 10px 14px;
+        gap: 8px;
+        margin-bottom: 14px;
+        border-radius: 10px;
+    }
+    .bhph-badge svg { width: 15px; height: 15px; }
     .vehicle-header-row {
         flex-direction: row;
         align-items: flex-start;

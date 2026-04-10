@@ -107,6 +107,11 @@
                 </div>
             </div>
 
+            <div class="bhph-badge" data-en="BUY HERE PAY HERE" data-es="COMPRA AQU&Iacute; PAGA AQU&Iacute;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span data-en="BUY HERE PAY HERE &mdash; No Credit Check &bull; Drive Today" data-es="COMPRA AQU&Iacute; PAGA AQU&Iacute; &mdash; Sin Chequeo de Cr&eacute;dito &bull; Maneja Hoy">BUY HERE PAY HERE &mdash; No Credit Check &bull; Drive Today</span>
+            </div>
+
             <div class="vehicle-quick-specs">
                 <div class="quick-spec">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
