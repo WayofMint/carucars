@@ -648,11 +648,18 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
             document.querySelector('.app-steps').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // PDF application + email with attachment (fire and forget, doesn't affect Web3Forms)
+            // PDF application + email with attachment
             fetch('https://yellowgreen-emu-225498.hostingersite.com/send-application.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.assign({key: 'carucars-app-2026'}, d))
+            }).catch(function(){});
+
+            // Send ADF lead to DealerCenter CRM
+            fetch('https://yellowgreen-emu-225498.hostingersite.com/lead-to-crm.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.assign({key: 'carucars-crm-2026', source: 'Finance Application'}, d))
             }).catch(function(){});
         }
     })

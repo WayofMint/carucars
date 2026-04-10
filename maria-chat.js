@@ -139,10 +139,24 @@
 
         fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
             .then(function(r) { return r.json(); })
-            .then(function(d) {
+            .then(function(res) {
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('leadThankYou').style.display = 'flex';
                 setTimeout(function() { closeLeadPopup(); }, 3000);
+
+                // Send ADF lead to DealerCenter CRM
+                fetch('https://yellowgreen-emu-225498.hostingersite.com/lead-to-crm.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        key: 'carucars-crm-2026',
+                        source: 'Maria Chat',
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        zip: zip
+                    })
+                }).catch(function(){});
             })
             .catch(function() {
                 alert('Something went wrong. Please call us at (786) 428-4008.');
