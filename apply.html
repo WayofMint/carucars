@@ -524,77 +524,107 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
     var d = {};
     fd.forEach(function(v,k){ d[k]=v; });
 
-    // Build styled HTML email that looks like a printable form
+    // Build official loan-application-style HTML form (printable)
     var now = new Date();
-    var dateStr = now.toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'}) + ' at ' + now.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+    var dateStr = (now.getMonth()+1)+'/'+now.getDate()+'/'+now.getFullYear();
+    var timeStr = now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
 
-    var html = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:680px;margin:0 auto;color:#1a1a2e;">' +
-        '<div style="background:#E63946;padding:24px 32px;border-radius:12px 12px 0 0;">' +
-            '<h1 style="margin:0;color:white;font-size:22px;">CARUCARS LLC</h1>' +
-            '<p style="margin:4px 0 0;color:rgba(255,255,255,0.85);font-size:13px;">Finance Application &mdash; ' + dateStr + '</p>' +
-        '</div>' +
-        '<div style="border:2px solid #e5e5e5;border-top:none;border-radius:0 0 12px 12px;padding:0;">' +
+    // Helpers for form field cells
+    var c = 'style="border:1px solid #000;padding:4px 8px;font-size:12px;font-family:Arial,sans-serif;"';
+    var lbl = 'style="border:1px solid #000;padding:2px 8px;font-size:9px;font-family:Arial,sans-serif;background:#f0f0f0;color:#333;text-transform:uppercase;letter-spacing:0.5px;"';
+    var val = 'style="border:1px solid #000;padding:6px 8px;font-size:13px;font-family:Arial,sans-serif;font-weight:bold;"';
+    var sec = 'style="background:#E63946;color:white;padding:6px 10px;font-size:11px;font-weight:bold;text-transform:uppercase;letter-spacing:1.5px;border:1px solid #000;"';
 
-        // Personal Info
-        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
-            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Personal Information</h2>' +
-            '<table style="width:100%;border-collapse:collapse;">' +
-                '<tr><td style="padding:6px 0;width:50%;"><b>Name:</b> ' + (d.first_name||'') + ' ' + (d.last_name||'') + '</td><td style="padding:6px 0;"><b>Phone:</b> ' + (d.phone||'') + '</td></tr>' +
-                '<tr><td style="padding:6px 0;"><b>Email:</b> ' + (d.email||'') + '</td><td style="padding:6px 0;"><b>DOB:</b> ' + (d.dob||'') + '</td></tr>' +
-                '<tr><td style="padding:6px 0;" colspan="2"><b>Driver\'s License:</b> ' + (d.drivers_license||'N/A') + '</td></tr>' +
-            '</table>' +
-        '</div>' +
+    var html = '<div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;color:#000;">' +
 
-        // Housing
-        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
-            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Housing</h2>' +
-            '<table style="width:100%;border-collapse:collapse;">' +
-                '<tr><td style="padding:6px 0;" colspan="2"><b>Address:</b> ' + (d.address||'') + ', ' + (d.city||'') + ', ' + (d.state||'') + ' ' + (d.zip||'') + '</td></tr>' +
-                '<tr><td style="padding:6px 0;width:50%;"><b>Residence Type:</b> ' + (d.residence_type||'N/A') + '</td><td style="padding:6px 0;"><b>Monthly Payment:</b> $' + (d.monthly_housing||'0') + '</td></tr>' +
-                '<tr><td style="padding:6px 0;" colspan="2"><b>Time at Residence:</b> ' + (d.residence_years||'0') + ' years, ' + (d.residence_months||'0') + ' months</td></tr>' +
-            '</table>' +
-        '</div>' +
+        // Header
+        '<table style="width:100%;border-collapse:collapse;border:2px solid #000;">' +
+        '<tr><td style="padding:12px 16px;border-bottom:2px solid #000;">' +
+            '<table style="width:100%;"><tr>' +
+                '<td style="vertical-align:middle;"><span style="font-size:24px;font-weight:bold;letter-spacing:1px;">CARUCARS LLC</span><br>' +
+                '<span style="font-size:10px;color:#555;">9600 NW 7th Ave, Miami FL 33150 &bull; (786) 428-4008</span></td>' +
+                '<td style="text-align:right;vertical-align:middle;"><span style="font-size:16px;font-weight:bold;">CREDIT APPLICATION</span><br>' +
+                '<span style="font-size:10px;color:#555;">Date: ' + dateStr + ' &bull; Time: ' + timeStr + '</span></td>' +
+            '</tr></table>' +
+        '</td></tr>' +
 
-        // Employment
-        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
-            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Employment</h2>' +
-            '<table style="width:100%;border-collapse:collapse;">' +
-                '<tr><td style="padding:6px 0;width:50%;"><b>Employer:</b> ' + (d.employer||'') + '</td><td style="padding:6px 0;"><b>Title:</b> ' + (d.occupation||'') + '</td></tr>' +
-                '<tr><td style="padding:6px 0;"><b>Status:</b> ' + (d.employment_status||'') + '</td><td style="padding:6px 0;"><b>Time on Job:</b> ' + (d.job_years||'0') + 'yr ' + (d.job_months||'0') + 'mo</td></tr>' +
-                '<tr><td style="padding:6px 0;"><b>Pay Frequency:</b> ' + (d.pay_frequency||'') + '</td><td style="padding:6px 0;"><b>Per Paycheck:</b> $' + (d.paycheck_amount||'0') + '</td></tr>' +
-                '<tr><td style="padding:6px 0;" colspan="2"><b>Other Monthly Income:</b> $' + (d.other_income||'0') + '</td></tr>' +
-            '</table>' +
-        '</div>' +
+        // Section A: Applicant Information
+        '<tr><td ' + sec + '>Section A &mdash; Applicant Information</td></tr>' +
+        '<tr><td style="padding:0;border:none;">' +
+        '<table style="width:100%;border-collapse:collapse;">' +
+            '<tr><td ' + lbl + ' width="25%">Last Name</td><td ' + val + ' width="25%">' + (d.last_name||'') + '</td>' +
+                '<td ' + lbl + ' width="25%">First Name</td><td ' + val + ' width="25%">' + (d.first_name||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Date of Birth</td><td ' + val + '>' + (d.dob||'') + '</td>' +
+                '<td ' + lbl + '>Driver\'s License #</td><td ' + val + '>' + (d.drivers_license||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Phone</td><td ' + val + '>' + (d.phone||'') + '</td>' +
+                '<td ' + lbl + '>Email</td><td ' + val + '>' + (d.email||'') + '</td></tr>' +
+        '</table></td></tr>' +
 
-        // Vehicle & Down Payment
-        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
-            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Vehicle &amp; Financing</h2>' +
-            '<table style="width:100%;border-collapse:collapse;">' +
-                '<tr><td style="padding:6px 0;width:50%;"><b>Vehicle Interest:</b> ' + (d.vehicle_interest||'Any') + '</td><td style="padding:6px 0;"><b>Desired Payment:</b> $' + (d.desired_payment||'N/A') + '/mo</td></tr>' +
-                '<tr><td style="padding:6px 0;"><b>Loan Amount:</b> $' + (d.loan_amount||'N/A') + '</td><td style="padding:6px 0;"><b style="color:#16a34a;font-size:16px;">Down Payment: $' + (d.down_payment||'N/A') + '</b></td></tr>' +
-            '</table>' +
-        '</div>' +
+        // Section B: Residence
+        '<tr><td ' + sec + '>Section B &mdash; Residence Information</td></tr>' +
+        '<tr><td style="padding:0;border:none;">' +
+        '<table style="width:100%;border-collapse:collapse;">' +
+            '<tr><td ' + lbl + ' width="25%">Street Address</td><td ' + val + ' colspan="3">' + (d.address||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>City</td><td ' + val + '>' + (d.city||'') + '</td>' +
+                '<td ' + lbl + '>State</td><td ' + val + '>' + (d.state||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Zip Code</td><td ' + val + '>' + (d.zip||'') + '</td>' +
+                '<td ' + lbl + '>Residence Type</td><td ' + val + '>' + (d.residence_type||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Monthly Rent/Mortgage</td><td ' + val + '>$' + (d.monthly_housing||'0') + '</td>' +
+                '<td ' + lbl + '>Time at Residence</td><td ' + val + '>' + (d.residence_years||'0') + ' yr, ' + (d.residence_months||'0') + ' mo</td></tr>' +
+        '</table></td></tr>' +
 
-        // Trade-In
-        (d.trade_in ? '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
-            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Trade-In</h2>' +
-            '<table style="width:100%;border-collapse:collapse;">' +
-                '<tr><td style="padding:6px 0;width:50%;"><b>Vehicle:</b> ' + d.trade_in + '</td><td style="padding:6px 0;"><b>Mileage:</b> ' + (d.trade_mileage||'N/A') + '</td></tr>' +
-            '</table>' +
-        '</div>' : '') +
+        // Section C: Employment
+        '<tr><td ' + sec + '>Section C &mdash; Employment &amp; Income</td></tr>' +
+        '<tr><td style="padding:0;border:none;">' +
+        '<table style="width:100%;border-collapse:collapse;">' +
+            '<tr><td ' + lbl + ' width="25%">Employer Name</td><td ' + val + ' colspan="3">' + (d.employer||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Occupation / Title</td><td ' + val + '>' + (d.occupation||'') + '</td>' +
+                '<td ' + lbl + '>Employment Status</td><td ' + val + '>' + (d.employment_status||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Time on Job</td><td ' + val + '>' + (d.job_years||'0') + ' yr, ' + (d.job_months||'0') + ' mo</td>' +
+                '<td ' + lbl + '>Employer Phone</td><td ' + val + '>' + (d.employer_phone||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Pay Frequency</td><td ' + val + '>' + (d.pay_frequency||'') + '</td>' +
+                '<td ' + lbl + '>Amount per Paycheck</td><td ' + val + '>$' + (d.paycheck_amount||'0') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Other Monthly Income</td><td ' + val + ' colspan="3">$' + (d.other_income||'0') + '</td></tr>' +
+        '</table></td></tr>' +
+
+        // Section D: Vehicle & Financing
+        '<tr><td ' + sec + '>Section D &mdash; Vehicle &amp; Financing Request</td></tr>' +
+        '<tr><td style="padding:0;border:none;">' +
+        '<table style="width:100%;border-collapse:collapse;">' +
+            '<tr><td ' + lbl + ' width="25%">Vehicle of Interest</td><td ' + val + ' colspan="3">' + (d.vehicle_interest||'Any available') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Desired Loan Amount</td><td ' + val + '>$' + (d.loan_amount||'') + '</td>' +
+                '<td ' + lbl + '>Desired Monthly Payment</td><td ' + val + '>$' + (d.desired_payment||'') + '</td></tr>' +
+            '<tr><td ' + lbl + ' style="background:#E63946;color:white;border:1px solid #000;padding:2px 8px;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;font-weight:bold;">DOWN PAYMENT</td>' +
+                '<td style="border:1px solid #000;padding:8px;font-size:18px;font-weight:bold;color:#16a34a;" colspan="3">$' + (d.down_payment||'0') + '</td></tr>' +
+        '</table></td></tr>' +
+
+        // Section E: Trade-In (if provided)
+        (d.trade_in ? '<tr><td ' + sec + '>Section E &mdash; Trade-In Vehicle</td></tr>' +
+        '<tr><td style="padding:0;border:none;">' +
+        '<table style="width:100%;border-collapse:collapse;">' +
+            '<tr><td ' + lbl + ' width="25%">Year / Make / Model</td><td ' + val + '>' + d.trade_in + '</td>' +
+                '<td ' + lbl + '>Mileage</td><td ' + val + '>' + (d.trade_mileage||'') + '</td></tr>' +
+        '</table></td></tr>' : '') +
 
         // Comments
-        (d.comments ? '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
-            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Comments</h2>' +
-            '<p style="margin:0;line-height:1.6;">' + d.comments + '</p>' +
-        '</div>' : '') +
+        (d.comments ? '<tr><td ' + sec + '>Additional Comments</td></tr>' +
+        '<tr><td style="border:1px solid #000;padding:10px 12px;font-size:12px;line-height:1.6;">' + d.comments + '</td></tr>' : '') +
+
+        // Signature line
+        '<tr><td style="padding:16px 12px;border:1px solid #000;border-top:2px solid #000;">' +
+            '<table style="width:100%;"><tr>' +
+                '<td style="width:50%;padding-top:30px;border-top:1px solid #000;font-size:10px;text-align:center;">Applicant Signature</td>' +
+                '<td style="width:10%;"></td>' +
+                '<td style="width:40%;padding-top:30px;border-top:1px solid #000;font-size:10px;text-align:center;">Date</td>' +
+            '</tr></table>' +
+        '</td></tr>' +
 
         // Footer
-        '<div style="padding:16px 32px;background:#f8f8f8;border-radius:0 0 10px 10px;text-align:center;">' +
-            '<p style="margin:0;font-size:12px;color:#888;">CARUCARS LLC &bull; 9600 NW 7th Ave, Miami FL 33150 &bull; (786) 428-4008</p>' +
-        '</div>' +
+        '<tr><td style="padding:8px 12px;background:#f5f5f5;border:1px solid #000;text-align:center;font-size:9px;color:#666;">' +
+            'CARUCARS LLC &bull; Buy Here Pay Here &bull; 9600 NW 7th Ave, Miami FL 33150 &bull; (786) 428-4008 &bull; Submitted online ' + dateStr + ' ' + timeStr +
+        '</td></tr>' +
 
-        '</div></div>';
+        '</table></div>';
 
     // Send styled email via Web3Forms API
     var payload = {
