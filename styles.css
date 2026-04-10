@@ -2046,22 +2046,61 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-    color: white;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    padding: 14px 24px;
-    border-radius: 12px;
+    background: linear-gradient(135deg, #16a34a 0%, #0d7a35 50%, #16a34a 100%);
+    background-size: 200% 100%;
+    animation: badgeShimmer 3s ease-in-out infinite;
+    padding: 16px 24px;
+    border-radius: 14px;
     margin-bottom: 20px;
-    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.3);
 }
 
-.bhph-badge svg {
-    flex-shrink: 0;
-    color: rgba(255,255,255,0.8);
+.bhph-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: badgeFlare 4s ease-in-out infinite;
+}
+
+@keyframes badgeShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes badgeFlare {
+    0% { left: -100%; }
+    40%, 100% { left: 150%; }
+}
+
+.bhph-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.bhph-main {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: white;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.bhph-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
 }
 
 /* ---- New elements (all viewports) ---- */
@@ -2209,13 +2248,16 @@ body {
         padding: 16px 20px 20px;
     }
     .bhph-badge {
-        font-size: 0.72rem;
-        padding: 10px 14px;
-        gap: 8px;
+        padding: 12px 16px;
         margin-bottom: 14px;
         border-radius: 10px;
     }
-    .bhph-badge svg { width: 15px; height: 15px; }
+    .bhph-main {
+        font-size: 1.1rem;
+    }
+    .bhph-sub {
+        font-size: 0.68rem;
+    }
     .vehicle-header-row {
         flex-direction: row;
         align-items: flex-start;
