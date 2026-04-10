@@ -1,4 +1,14 @@
-# ── CARU CARS — Security Rules ──────────────────────────────────────────────────
+# ── CARU CARS — Redirects ───────────────────────────────────────────────────────
+# Redirect old DealerCenter/Carsforsale URLs to new pages
+RewriteEngine On
+RewriteRule ^loanapplication\.aspx$ /apply.html [R=301,L,NC]
+RewriteRule ^loan-application$ /apply.html [R=301,L,NC]
+RewriteRule ^finance$ /apply.html [R=301,L,NC]
+RewriteRule ^apply$ /apply.html [R=301,L,NC]
+RewriteRule ^inventory\.aspx$ /inventory.html [R=301,L,NC]
+RewriteRule ^contact\.aspx$ /contact.html [R=301,L,NC]
+
+# ── Security Rules ──────────────────────────────────────────────────────────────
 # Block direct web access to sync script, CSV feeds, and log files.
 # These should only be accessed by cron/FTP, never by browsers.
 
