@@ -243,8 +243,8 @@
             grid.innerHTML = featured.map(function(car) {
                 return '<a href="vehicle.html?stock=' + car.stock + '" class="car-card-link"><div class="car-card"><div class="car-img-wrap">' +
                     '<img src="' + car.img + '" alt="' + car.year + ' ' + car.make + ' ' + car.model + '" class="car-img" loading="lazy">' +
-                    '<div class="car-year-tag">' + car.year + '</div></div>' +
-                    '<div class="car-info"><div class="car-title-row"><h3>' + car.make + ' ' + car.model + '</h3></div>' +
+                    '</div>' +
+                    '<div class="car-info"><div class="car-title-row"><h3><span class="car-year">' + car.year + '</span> ' + car.make + ' ' + car.model + '</h3></div>' +
                     '<div class="car-specs"><span class="car-spec">' + car.miles.toLocaleString() + ' mi</span>' +
                     '<span class="car-spec">' + car.type + '</span>' +
                     '<span class="car-spec">' + car.extColor + '</span></div>' +

@@ -80,12 +80,11 @@
                         </div>
                     </div>`
                 }
-                <div class="car-year-tag">${car.year}</div>
                 ${photoCount > 1 ? `<div class="car-photo-count"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> ${photoCount}</div>` : ''}
             </div>
             <div class="car-info">
                 <div class="car-title-row">
-                    <h3>${esc(car.make)} ${esc(car.model)}</h3>
+                    <h3><span class="car-year">${car.year}</span> ${esc(car.make)} ${esc(car.model)}</h3>
                 </div>
                 <div class="car-specs">
                     <span class="car-spec">
