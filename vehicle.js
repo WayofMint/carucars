@@ -101,7 +101,9 @@
                     <p class="vehicle-trim">${esc(car.transmission) || esc(car.type)}</p>
                 </div>
                 <div class="vehicle-price-tag">
-                    <span class="vehicle-price">${formatPrice(car.price)}</span>
+                    <span class="vehicle-price-original">${formatPrice(car.price)}</span>
+                    <span class="vehicle-price">${formatPrice(car.price - 4000)}</span>
+                    <span class="vehicle-price-down" data-en="w/ $4,000 down" data-es="c/ $4,000 inicial">w/ $4,000 down</span>
                 </div>
             </div>
 
@@ -121,7 +123,9 @@
             </div>
 
             <div class="vehicle-price-block desktop-only">
-                <span class="vehicle-price">${formatPrice(car.price)}</span>
+                <span class="vehicle-price-original">${formatPrice(car.price)}</span>
+                <span class="vehicle-price">${formatPrice(car.price - 4000)}</span>
+                <span class="vehicle-price-down" data-en="w/ $4,000 down" data-es="c/ $4,000 inicial">w/ $4,000 down</span>
                 <a href="tel:7864284008" class="vehicle-call-btn" data-en="Call Now &mdash; (786) 428-4008" data-es="Llama Ya &mdash; (786) 428-4008">Call Now &mdash; (786) 428-4008</a>
             </div>
 
@@ -252,6 +256,90 @@
                 if (diff > 0) showPhoto(currentIndex - 1);
                 else showPhoto(currentIndex + 1);
             }
+        }, { passive: true });
+    }
+
+    // ---- Fullscreen Lightbox ----
+    if (hasPhotos) {
+        var lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = `
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            <div class="lightbox-counter" id="lightboxCounter">1 / ${photoCount}</div>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            ${photoCount > 1 ? `
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>` : ''}
+        `;
+        document.body.appendChild(lightbox);
+
+        var lbImg = document.getElementById('lightboxImg');
+        var lbCounter = document.getElementById('lightboxCounter');
+        var lbIndex = 0;
+
+        function openLightbox(index) {
+            lbIndex = index || 0;
+            lbImg.src = car.photos[lbIndex];
+            lbCounter.textContent = (lbIndex + 1) + ' / ' + photoCount;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lbShow(index) {
+            if (index < 0) index = photoCount - 1;
+            if (index >= photoCount) index = 0;
+            lbIndex = index;
+            lbImg.src = car.photos[lbIndex];
+            lbCounter.textContent = (lbIndex + 1) + ' / ' + photoCount;
+        }
+
+        // Click main image to open lightbox
+        var mainImg = document.getElementById('galleryMainImg');
+        if (mainImg) {
+            mainImg.style.cursor = 'zoom-in';
+            mainImg.addEventListener('click', function() {
+                var idx = 0;
+                var currentSrc = mainImg.src;
+                car.photos.forEach(function(p, i) { if (currentSrc.indexOf(p) !== -1) idx = i; });
+                openLightbox(idx);
+            });
+        }
+
+        // Close
+        lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Nav
+        if (photoCount > 1) {
+            document.getElementById('lightboxPrev').addEventListener('click', function(e) { e.stopPropagation(); lbShow(lbIndex - 1); });
+            document.getElementById('lightboxNext').addEventListener('click', function(e) { e.stopPropagation(); lbShow(lbIndex + 1); });
+        }
+
+        // Keyboard
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
+            if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+        });
+
+        // Swipe in lightbox
+        var lbTouchStart = 0;
+        lightbox.addEventListener('touchstart', function(e) { lbTouchStart = e.changedTouches[0].screenX; }, { passive: true });
+        lightbox.addEventListener('touchend', function(e) {
+            var diff = e.changedTouches[0].screenX - lbTouchStart;
+            if (Math.abs(diff) > 50) { diff > 0 ? lbShow(lbIndex - 1) : lbShow(lbIndex + 1); }
         }, { passive: true });
     }
 

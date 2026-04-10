@@ -104,7 +104,9 @@
                 <div class="car-divider"></div>
                 <div class="car-price-row">
                     <div class="car-price-block">
-                        <span class="car-price">${formatPrice(car.price)}</span>
+                        <span class="car-price-original">${formatPrice(car.price)}</span>
+                        <span class="car-price">${formatPrice(car.price - 4000)}</span>
+                        <span class="car-price-down">w/ $4,000 down</span>
                     </div>
                     <span class="car-cta-btn" data-en="View Details" data-es="Ver Detalles">${lang === 'es' ? 'Ver Detalles' : 'View Details'}</span>
                 </div>
