@@ -520,16 +520,116 @@ function updateSteps() {
 document.getElementById('financeApp').addEventListener('submit', function(e) {
     e.preventDefault();
     var form = this;
-    var data = new FormData(form);
+    var fd = new FormData(form);
+    var d = {};
+    fd.forEach(function(v,k){ d[k]=v; });
 
-    fetch(form.action, { method: 'POST', body: data })
+    // Build styled HTML email that looks like a printable form
+    var now = new Date();
+    var dateStr = now.toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'}) + ' at ' + now.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+
+    var html = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:680px;margin:0 auto;color:#1a1a2e;">' +
+        '<div style="background:#E63946;padding:24px 32px;border-radius:12px 12px 0 0;">' +
+            '<h1 style="margin:0;color:white;font-size:22px;">CARUCARS LLC</h1>' +
+            '<p style="margin:4px 0 0;color:rgba(255,255,255,0.85);font-size:13px;">Finance Application &mdash; ' + dateStr + '</p>' +
+        '</div>' +
+        '<div style="border:2px solid #e5e5e5;border-top:none;border-radius:0 0 12px 12px;padding:0;">' +
+
+        // Personal Info
+        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
+            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Personal Information</h2>' +
+            '<table style="width:100%;border-collapse:collapse;">' +
+                '<tr><td style="padding:6px 0;width:50%;"><b>Name:</b> ' + (d.first_name||'') + ' ' + (d.last_name||'') + '</td><td style="padding:6px 0;"><b>Phone:</b> ' + (d.phone||'') + '</td></tr>' +
+                '<tr><td style="padding:6px 0;"><b>Email:</b> ' + (d.email||'') + '</td><td style="padding:6px 0;"><b>DOB:</b> ' + (d.dob||'') + '</td></tr>' +
+                '<tr><td style="padding:6px 0;" colspan="2"><b>Driver\'s License:</b> ' + (d.drivers_license||'N/A') + '</td></tr>' +
+            '</table>' +
+        '</div>' +
+
+        // Housing
+        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
+            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Housing</h2>' +
+            '<table style="width:100%;border-collapse:collapse;">' +
+                '<tr><td style="padding:6px 0;" colspan="2"><b>Address:</b> ' + (d.address||'') + ', ' + (d.city||'') + ', ' + (d.state||'') + ' ' + (d.zip||'') + '</td></tr>' +
+                '<tr><td style="padding:6px 0;width:50%;"><b>Residence Type:</b> ' + (d.residence_type||'N/A') + '</td><td style="padding:6px 0;"><b>Monthly Payment:</b> $' + (d.monthly_housing||'0') + '</td></tr>' +
+                '<tr><td style="padding:6px 0;" colspan="2"><b>Time at Residence:</b> ' + (d.residence_years||'0') + ' years, ' + (d.residence_months||'0') + ' months</td></tr>' +
+            '</table>' +
+        '</div>' +
+
+        // Employment
+        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
+            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Employment</h2>' +
+            '<table style="width:100%;border-collapse:collapse;">' +
+                '<tr><td style="padding:6px 0;width:50%;"><b>Employer:</b> ' + (d.employer||'') + '</td><td style="padding:6px 0;"><b>Title:</b> ' + (d.occupation||'') + '</td></tr>' +
+                '<tr><td style="padding:6px 0;"><b>Status:</b> ' + (d.employment_status||'') + '</td><td style="padding:6px 0;"><b>Time on Job:</b> ' + (d.job_years||'0') + 'yr ' + (d.job_months||'0') + 'mo</td></tr>' +
+                '<tr><td style="padding:6px 0;"><b>Pay Frequency:</b> ' + (d.pay_frequency||'') + '</td><td style="padding:6px 0;"><b>Per Paycheck:</b> $' + (d.paycheck_amount||'0') + '</td></tr>' +
+                '<tr><td style="padding:6px 0;" colspan="2"><b>Other Monthly Income:</b> $' + (d.other_income||'0') + '</td></tr>' +
+            '</table>' +
+        '</div>' +
+
+        // Vehicle & Down Payment
+        '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
+            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Vehicle &amp; Financing</h2>' +
+            '<table style="width:100%;border-collapse:collapse;">' +
+                '<tr><td style="padding:6px 0;width:50%;"><b>Vehicle Interest:</b> ' + (d.vehicle_interest||'Any') + '</td><td style="padding:6px 0;"><b>Desired Payment:</b> $' + (d.desired_payment||'N/A') + '/mo</td></tr>' +
+                '<tr><td style="padding:6px 0;"><b>Loan Amount:</b> $' + (d.loan_amount||'N/A') + '</td><td style="padding:6px 0;"><b style="color:#16a34a;font-size:16px;">Down Payment: $' + (d.down_payment||'N/A') + '</b></td></tr>' +
+            '</table>' +
+        '</div>' +
+
+        // Trade-In
+        (d.trade_in ? '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
+            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Trade-In</h2>' +
+            '<table style="width:100%;border-collapse:collapse;">' +
+                '<tr><td style="padding:6px 0;width:50%;"><b>Vehicle:</b> ' + d.trade_in + '</td><td style="padding:6px 0;"><b>Mileage:</b> ' + (d.trade_mileage||'N/A') + '</td></tr>' +
+            '</table>' +
+        '</div>' : '') +
+
+        // Comments
+        (d.comments ? '<div style="padding:20px 32px;border-bottom:2px solid #e5e5e5;">' +
+            '<h2 style="font-size:15px;color:#E63946;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Comments</h2>' +
+            '<p style="margin:0;line-height:1.6;">' + d.comments + '</p>' +
+        '</div>' : '') +
+
+        // Footer
+        '<div style="padding:16px 32px;background:#f8f8f8;border-radius:0 0 10px 10px;text-align:center;">' +
+            '<p style="margin:0;font-size:12px;color:#888;">CARUCARS LLC &bull; 9600 NW 7th Ave, Miami FL 33150 &bull; (786) 428-4008</p>' +
+        '</div>' +
+
+        '</div></div>';
+
+    // Send styled email via Web3Forms API
+    var payload = {
+        access_key: '2521447a-cb11-4639-b08f-9c11d8cb7cec',
+        subject: 'New Finance Application - ' + (d.first_name||'') + ' ' + (d.last_name||''),
+        from_name: (d.first_name||'') + ' ' + (d.last_name||'') + ' (Caru Cars App)',
+        replyto: d.email || '',
+        message: html
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
     .then(function(r) { return r.json(); })
-    .then(function(d) {
-        if (d.success) {
+    .then(function(resp) {
+        if (resp.success) {
             form.style.display = 'none';
             document.getElementById('formSuccess').style.display = 'block';
             document.querySelector('.app-steps').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // SMS notification (fire and forget)
+            fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-notify.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    key: 'carucars-sms-2026',
+                    name: (d.first_name||'') + ' ' + (d.last_name||''),
+                    phone: d.phone || '',
+                    vehicle: d.vehicle_interest || 'Any',
+                    down: d.down_payment || 'N/A'
+                })
+            }).catch(function(){});
         }
     })
     .catch(function() {
