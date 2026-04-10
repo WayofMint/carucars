@@ -648,17 +648,11 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
             document.querySelector('.app-steps').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // SMS notification (fire and forget)
-            fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-notify.php', {
+            // PDF application + email with attachment (fire and forget, doesn't affect Web3Forms)
+            fetch('https://yellowgreen-emu-225498.hostingersite.com/send-application.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    key: 'carucars-sms-2026',
-                    name: (d.first_name||'') + ' ' + (d.last_name||''),
-                    phone: d.phone || '',
-                    vehicle: d.vehicle_interest || 'Any',
-                    down: d.down_payment || 'N/A'
-                })
+                body: JSON.stringify(Object.assign({key: 'carucars-app-2026'}, d))
             }).catch(function(){});
         }
     })
