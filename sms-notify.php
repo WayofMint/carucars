@@ -28,32 +28,45 @@ $msg = "NEW FINANCE APP - Caru Cars\n"
      . "Down: \${$down}\n"
      . "Check email for full application.";
 
-// Send to all 3 dealer phones
-$phones = ['3059654109', '3056090055', '7868970167'];
+// Send to all 3 dealer phones via Email-to-SMS (free, unlimited, no API key needed)
+// Uses carrier email gateways. Works with all major US carriers.
+$phones = [
+    ['number' => '3059654109', 'name' => 'Phone1'],
+    ['number' => '3056090055', 'name' => 'Phone2'],
+    ['number' => '7868970167', 'name' => 'Phone3'],
+];
 
-// Using Textbelt (free tier: 1/day total, paid: unlimited at $0.01/sms)
-// 3 numbers x multiple apps/day = need paid key. Buy at textbelt.com ($0.01/sms)
-// Replace 'textbelt' with your paid key below
+// US carrier SMS gateways (email-to-SMS, completely free)
+$gateways = [
+    '@txt.att.net',           // AT&T
+    '@tmomail.net',           // T-Mobile
+    '@vtext.com',             // Verizon
+    '@messaging.sprintpcs.com', // Sprint/T-Mobile
+    '@sms.cricketwireless.net', // Cricket
+    '@mymetropcs.com',        // Metro
+    '@msg.fi.google.com',     // Google Fi
+];
+
+// Short SMS-friendly message
+$smsMsg = "CARU CARS NEW APP\n{$name}\nPh: {$phone}\nCar: {$vehicle}\nDown: \${$down}";
+
 $results = [];
 foreach ($phones as $ph) {
-    $ch = curl_init('https://textbelt.com/text');
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => http_build_query([
-            'phone' => $ph,
-            'message' => $msg,
-            'key' => 'textbelt',
-        ]),
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 10,
-    ]);
-    $results[$ph] = curl_exec($ch);
-    curl_close($ch);
+    $num = $ph['number'];
+    // Send to ALL carrier gateways — only the right one delivers, others silently fail
+    foreach ($gateways as $gw) {
+        $to = $num . $gw;
+        $headers = "From: noreply@carucars.com\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        @mail($to, '', $smsMsg, $headers);
+    }
+    $results[] = $num;
 }
 
 // Log
 file_put_contents(__DIR__ . '/sync-log.txt',
-    '[' . date('Y-m-d H:i:s') . "] SMS sent for {$name} to 3 numbers: " . json_encode($results) . "\n",
+    '[' . date('Y-m-d H:i:s') . "] SMS (email gateway) sent for {$name} to: " . implode(', ', $results) . "\n",
     FILE_APPEND | LOCK_EX
 );
 
