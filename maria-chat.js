@@ -145,9 +145,8 @@
                 setTimeout(function() { closeLeadPopup(); }, 3000);
             })
             .catch(function() {
-                document.getElementById('leadForm').style.display = 'none';
-                document.getElementById('leadThankYou').style.display = 'flex';
-                setTimeout(function() { closeLeadPopup(); }, 3000);
+                alert('Something went wrong. Please call us at (786) 428-4008.');
+                closeLeadPopup();
             });
     };
 
