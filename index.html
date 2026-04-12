@@ -249,7 +249,7 @@
                     '<span class="car-spec">' + car.type + '</span>' +
                     '<span class="car-spec">' + car.extColor + '</span></div>' +
                     '<div class="car-divider"></div>' +
-                    '<div class="car-price-row"><div class="car-price-block"><span class="car-price-original">$' + car.price.toLocaleString() + '</span><span class="car-price">$' + (car.price - 4000).toLocaleString() + '</span><span class="car-price-down">w/ $4,000 down</span></div>' +
+                    '<div class="car-price-row"><div class="car-price-block"><span class="car-price-original">$' + (car.price + 4000).toLocaleString() + '</span><span class="car-price">$' + car.price.toLocaleString() + '</span><span class="car-price-down">w/ $4,000 down</span></div>' +
                     '<span class="car-cta-btn" data-en="View Details" data-es="Ver Detalles">' + (lang === 'es' ? 'Ver Detalles' : 'View Details') + '</span></div></div></div></a>';
             }).join('');
             // Animate in

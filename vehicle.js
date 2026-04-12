@@ -101,8 +101,8 @@
                     <p class="vehicle-trim">${esc(car.transmission) || esc(car.type)}</p>
                 </div>
                 <div class="vehicle-price-tag">
-                    <span class="vehicle-price-original">${formatPrice(car.price)}</span>
-                    <span class="vehicle-price">${formatPrice(car.price - 4000)}</span>
+                    <span class="vehicle-price-original">${formatPrice(car.price + 4000)}</span>
+                    <span class="vehicle-price">${formatPrice(car.price)}</span>
                     <span class="vehicle-price-down" data-en="w/ $4,000 down" data-es="c/ $4,000 inicial">w/ $4,000 down</span>
                 </div>
             </div>
@@ -130,8 +130,8 @@
             </div>
 
             <div class="vehicle-price-block desktop-only">
-                <span class="vehicle-price-original">${formatPrice(car.price)}</span>
-                <span class="vehicle-price">${formatPrice(car.price - 4000)}</span>
+                <span class="vehicle-price-original">${formatPrice(car.price + 4000)}</span>
+                <span class="vehicle-price">${formatPrice(car.price)}</span>
                 <span class="vehicle-price-down" data-en="w/ $4,000 down" data-es="c/ $4,000 inicial">w/ $4,000 down</span>
                 <a href="tel:7864284008" class="vehicle-call-btn" data-en="Call Now &mdash; (786) 428-4008" data-es="Llama Ya &mdash; (786) 428-4008">Call Now &mdash; (786) 428-4008</a>
             </div>
