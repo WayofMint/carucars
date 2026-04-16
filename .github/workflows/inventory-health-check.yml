@@ -1,0 +1,115 @@
+name: Inventory Health Check
+
+# Runs 3x/day to verify the DealerCenter -> inventory-data.js pipeline.
+# DealerCenter pushes to Hostinger via FTP 3x/day; this check catches
+# cases where the server-side auto-rebuild can't recover (e.g. FTP is
+# broken upstream at DealerCenter). On persistent failure, opens/updates
+# a GitHub issue so Armani gets an email notification.
+
+on:
+  schedule:
+    # UTC times chosen to cover Miami business hours across DST.
+    # Roughly 9am / 2pm / 7pm Miami (EDT). In EST it's one hour earlier
+    # but still during business hours — fine for a sales lot.
+    - cron: '0 13 * * *'
+    - cron: '0 18 * * *'
+    - cron: '0 23 * * *'
+  workflow_dispatch:   # allow manual trigger from the Actions tab
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  # Don't stack up runs if one hangs; skip if another is in flight.
+  group: inventory-health-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run inventory health check
+        id: check
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/check-inventory-health.py > check-stdout.txt 2> check-stderr.txt
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          echo '--- stdout ---'
+          cat check-stdout.txt
+          echo '--- stderr ---'
+          cat check-stderr.txt
+          exit 0  # never fail this step; handle below so issue logic runs
+
+      - name: Summarize (healthy run)
+        if: steps.check.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          cat check-stdout.txt >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update alert issue (persistent failure)
+        if: steps.check.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TITLE='[INVENTORY ALERT] CaruCars inventory pipeline broken'
+          TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          RUN_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+          DETAIL="$(cat check-stderr.txt)"
+          if [ -z "$DETAIL" ]; then DETAIL="$(cat check-stdout.txt)"; fi
+
+          BODY=$(cat <<EOF
+          Automated inventory health check failed at **$TIMESTAMP** (after one 30s auto-rebuild retry).
+
+          **This means sold cars may still be listed, or new arrivals are missing, on carucars.com.**
+
+          \`\`\`
+          $DETAIL
+          \`\`\`
+
+          ### Runbook
+          - **If CSV is >24h old** → DealerCenter FTP is broken upstream.
+            Email Julius Pascua: \`Julius.Pascua@dealercenter.com\` (DCID **12327535**).
+          - **If CSV is fresh but JS is stale** → Hostinger cron/PHP issue.
+            Check \`sync-log.txt\` on the server and re-run \`cron-sync.php\`.
+          - **If endpoint unreachable** → Hostinger is down or the secret key changed.
+
+          Workflow run: $RUN_URL
+          Endpoint: https://yellowgreen-emu-225498.hostingersite.com/health-check.php
+          EOF
+          )
+
+          # Dedupe: if an open issue with our title exists, add a comment.
+          EXISTING=$(gh issue list \
+            --state open \
+            --search "\"$TITLE\" in:title" \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -n "$EXISTING" ]; then
+            echo "Updating existing alert issue #$EXISTING"
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            echo 'Creating new alert issue'
+            gh issue create --title "$TITLE" --body "$BODY"
+          fi
+
+          # Surface in the step summary too
+          {
+            echo "## Inventory Health Check FAILED"
+            echo ''
+            echo '```'
+            echo "$DETAIL"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          exit 1   # mark the job as failed so Actions shows red

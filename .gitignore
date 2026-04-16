@@ -7,3 +7,7 @@ build-inventory.py
 
 # Local Netlify folder
 .netlify
+
+# Claude Code local-only settings (never commit — machine-specific)
+.claude/settings.local.json
+
