@@ -7,7 +7,7 @@
  *
  * Checks three things:
  *   1. DealerCenter CSV freshness on Hostinger (is DC still pushing?)
- *   2. The /dc-vehicles.php endpoint (can we parse the CSV?)
+ *   2. The /check-sync.php endpoint (can we parse the CSV?)
  *   3. carucars.com/inventory-data.js (what customers actually see)
  */
 header('Content-Type: application/json');
@@ -47,9 +47,9 @@ if ($csvs) {
     $status['issues'][] = 'CSV_MISSING: no DealerCenter CSV on Hostinger';
 }
 
-// 2. dc-vehicles.php endpoint (server-side parse)
+// 2. check-sync.php endpoint (server-side parse)
 $feed = @file_get_contents(
-    'https://yellowgreen-emu-225498.hostingersite.com/dc-vehicles.php?key=carucars-sync-2026-x9f4',
+    'https://yellowgreen-emu-225498.hostingersite.com/check-sync.php?key=carucars-sync-2026-x9f4',
     false,
     stream_context_create(['http' => ['timeout' => 10]])
 );
@@ -58,13 +58,13 @@ if ($feed !== false) {
     if (is_array($arr)) {
         $status['inventory_feed'] = ['reachable' => true, 'vehicle_count' => count($arr)];
         if (count($arr) < 5) {
-            $status['issues'][] = 'FEED_TOO_FEW: dc-vehicles.php returned only ' . count($arr) . ' vehicles';
+            $status['issues'][] = 'FEED_TOO_FEW: check-sync.php returned only ' . count($arr) . ' vehicles';
         }
     } else {
-        $status['issues'][] = 'FEED_INVALID: dc-vehicles.php did not return a JSON array';
+        $status['issues'][] = 'FEED_INVALID: check-sync.php did not return a JSON array';
     }
 } else {
-    $status['issues'][] = 'FEED_UNREACHABLE: dc-vehicles.php failed';
+    $status['issues'][] = 'FEED_UNREACHABLE: check-sync.php failed';
 }
 
 // 3. Production — what customers see on carucars.com
