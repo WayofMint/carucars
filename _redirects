@@ -1,9 +1,5 @@
 # Force PHP files to proxy through to Hostinger (where PHP can actually execute).
 /*.php  https://yellowgreen-emu-225498.hostingersite.com/:splat  200!
 
-# Force inventory-data.js to ALWAYS come from Hostinger (not repo cache).
-# Hostinger's copy is rebuilt from DealerCenter CSVs. Repo copy may be stale.
-/inventory-data.js  https://yellowgreen-emu-225498.hostingersite.com/inventory-data.js  200!
-
 # Everything else: serve from the repo if the file exists, otherwise proxy.
 /*  https://yellowgreen-emu-225498.hostingersite.com/:splat  200
