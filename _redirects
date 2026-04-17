@@ -1,1 +1,7 @@
+# Force PHP files to proxy through to Hostinger (where PHP can actually execute).
+# Without this, Netlify serves the raw PHP source — leaking source + secret keys.
+/*.php  https://yellowgreen-emu-225498.hostingersite.com/:splat  200!
+
+# Everything else: serve from the repo if the file exists, otherwise proxy
+# to Hostinger for dynamic pages, form handlers, etc.
 /*  https://yellowgreen-emu-225498.hostingersite.com/:splat  200
