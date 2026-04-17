@@ -77,10 +77,10 @@ jobs:
           \`\`\`
 
           ### Runbook
-          - **If CSV is >24h old** → DealerCenter FTP is broken upstream.
-            Email Julius Pascua: \`Julius.Pascua@dealercenter.com\` (DCID **12327535**).
-          - **If CSV is fresh but JS is stale** → Hostinger cron/PHP issue.
-            Check \`sync-log.txt\` on the server and re-run \`cron-sync.php\`.
+          - **If CSV is >24h old** → DealerCenter FTP push is broken.
+            Check DealerCenter export config in-house.
+          - **If CSV is fresh but production shows stale/bad JS** →
+            Trigger manual sync: \`gh workflow run sync-inventory.yml\`.
           - **If endpoint unreachable** → Hostinger is down or the secret key changed.
 
           Workflow run: $RUN_URL

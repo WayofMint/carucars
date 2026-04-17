@@ -142,15 +142,14 @@ def loud_alert(data: dict, problems: list[str]) -> None:
     if csv_age is not None and csv_age >= CSV_MAX_AGE_HOURS:
         lines += [
             "",
-            "  >>> DealerCenter FTP appears BROKEN (no new CSV in 24h+).",
-            "  >>> ACTION: Armani — contact Julius Pascua",
-            "  >>>         Julius.Pascua@dealercenter.com   DCID 12327535",
+            "  >>> DealerCenter FTP push appears BROKEN (no new CSV in 24h+).",
+            "  >>> ACTION: Check DealerCenter export settings / FTP config in-house.",
         ]
     else:
         lines += [
             "",
-            "  >>> CSV is arriving but conversion to JSON is failing.",
-            "  >>> Check Hostinger: /home/.../sync-log.txt and cron-sync.php",
+            "  >>> CSV is arriving but inventory rebuild is failing.",
+            "  >>> Trigger manual sync: gh workflow run sync-inventory.yml",
         ]
 
     lines += [
