@@ -31,21 +31,23 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
         run: |
-          # List all DealerCenter CSVs on Hostinger, find newest by filename
-          LATEST=$(curl -s --insecure "ftp://82.25.87.207/" \
+          # IMPORTANT: The CSVs live OUTSIDE the FTP chroot (at the server's real /),
+          # not inside /public_html. The double-slash in the URL tells curl to use an
+          # absolute server path. Without it, listing the FTP home shows no CSVs.
+          LATEST=$(curl -s --insecure "ftp://82.25.87.207//" \
                    --user "$FTP_USER:$FTP_PASS" \
                    | grep -oE 'DealerCenter_[0-9]+_[0-9]+\.csv' \
                    | sort -u | tail -1)
 
           if [ -z "$LATEST" ]; then
-            echo "::error::No DealerCenter CSV found on Hostinger. DC FTP push may be broken."
+            echo "::error::No DealerCenter CSV found. DC FTP push may be broken — contact Julius."
             exit 1
           fi
           echo "Latest CSV: $LATEST"
           echo "LATEST_CSV=$LATEST" >> "$GITHUB_ENV"
 
-          # Download it
-          curl -s --insecure "ftp://82.25.87.207/$LATEST" \
+          # Download it (same double-slash for absolute path)
+          curl -s --insecure "ftp://82.25.87.207//$LATEST" \
             --user "$FTP_USER:$FTP_PASS" \
             -o dealercenter_feed.csv
 
