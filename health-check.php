@@ -8,6 +8,7 @@
  * not from Hostinger. This endpoint checks both the Hostinger copy (served as
  * fallback) AND the production carucars.com copy.
  */
+if (function_exists('opcache_invalidate')) { opcache_invalidate(__FILE__, true); }
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 

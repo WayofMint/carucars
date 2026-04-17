@@ -3,8 +3,8 @@ name: Sync Inventory
 on:
   schedule:
     # DealerCenter pushes CSV 3x/day. Sync shortly after each push.
-    # UTC times: 12:00, 18:00, 00:00 = ET 8am, 2pm, 8pm
-    - cron: '10 12,18,0 * * *'
+    # UTC times: 12:15, 18:15, 00:15 = ET ~8am, 2pm, 8pm
+    - cron: '15 12,18,0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -18,63 +18,61 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install lftp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-
-      - name: Pull latest CSV from Hostinger
-        env:
-          FTP_USER: ${{ secrets.FTP_USERNAME }}
-          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+      - name: Clear OPcache (so latest PHP fix is active)
         run: |
-          mkdir -p csv-pull
-          lftp -c "
-            set ftp:ssl-allow no;
-            set ftp:passive-mode true;
-            set net:timeout 30;
-            set net:max-retries 3;
-            set net:reconnect-interval-base 5;
-            open -u \"$FTP_USER\",\"$FTP_PASS\" ftp://82.25.87.207;
-            lcd csv-pull;
-            cd /public_html;
-            mget -E DealerCenter_*.csv || true;
-            bye
-          "
-          ls -la csv-pull/
-          # Find the newest CSV (Hostinger keeps ~3 per cron-sync cleanup)
-          latest=$(ls -t csv-pull/DealerCenter_*.csv 2>/dev/null | head -1)
-          if [ -z "$latest" ]; then
-            echo "::error::No DealerCenter CSV found on Hostinger. DC FTP push may be broken."
+          curl -sS --max-time 15 "https://yellowgreen-emu-225498.hostingersite.com/opcache-reset.php?key=carucars-sync-2026-x9f4" || true
+          echo
+
+      - name: Trigger Hostinger server-side CSV → JS rebuild
+        run: |
+          # Hostinger's cron-sync.php parses the DealerCenter CSV (which lives
+          # under a separate FTP account not accessible to our FTP user) and
+          # writes a fresh inventory-data.js. Runs as the web server user so
+          # it has read access to whatever DC uploaded.
+          result=$(curl -sS --max-time 60 \
+            "https://yellowgreen-emu-225498.hostingersite.com/cron-sync.php?key=carucars-sync-2026-x9f4")
+          echo "$result"
+          if echo "$result" | grep -qiE "abort|error|forbidden"; then
+            echo "::error::Hostinger rebuild failed: $result"
             exit 1
           fi
-          echo "Using: $latest ($(wc -l < "$latest") lines)"
-          cp "$latest" dealercenter_feed.csv
-
-      - name: Rebuild inventory-data.js
-        run: |
-          python3 build-inventory.py
-          echo "--- output size ---"
-          wc -c inventory-data.js
-          head -5 inventory-data.js
-
-      - name: Sanity check
-        run: |
-          # Require minimum vehicle count and valid JS syntax
-          count=$(grep -c '"stock":' inventory-data.js || echo 0)
-          echo "Parsed $count vehicles"
-          if [ "$count" -lt 10 ]; then
-            echo "::error::Only $count vehicles parsed — suspiciously low. Aborting commit."
+          if ! echo "$result" | grep -q "OK:"; then
+            echo "::error::Unexpected rebuild response: $result"
             exit 1
           fi
-          # Verify JS is syntactically valid
+
+      - name: Fetch freshly rebuilt inventory-data.js
+        run: |
+          # Cache-bust to make sure we pull origin (not CDN).
+          cb="$(date +%s)-$RANDOM"
+          curl -sS --max-time 30 --compressed \
+            -H "Cache-Control: no-cache" -H "Pragma: no-cache" \
+            "https://yellowgreen-emu-225498.hostingersite.com/inventory-data.js?cb=$cb" \
+            -o inventory-data.js.new
+          wc -c inventory-data.js.new
+          head -5 inventory-data.js.new
+
+      - name: Validate fetched file
+        run: |
+          # Must be a syntactically-valid JS file with an INVENTORY array of
+          # at least 10 vehicles. Reject anything smaller / broken.
+          size=$(wc -c < inventory-data.js.new)
+          if [ "$size" -lt 10000 ]; then
+            echo "::error::Fetched file is suspiciously small ($size bytes). Refusing to commit."
+            cat inventory-data.js.new
+            exit 1
+          fi
           node -e "
             const fs = require('fs');
-            const code = fs.readFileSync('inventory-data.js', 'utf8');
+            const code = fs.readFileSync('inventory-data.js.new', 'utf8');
             eval(code);
             if (typeof INVENTORY === 'undefined') throw new Error('INVENTORY not defined');
             if (!Array.isArray(INVENTORY)) throw new Error('INVENTORY not an array');
             if (INVENTORY.length < 10) throw new Error('Too few vehicles: ' + INVENTORY.length);
-            console.log('OK: ' + INVENTORY.length + ' vehicles, first=' + INVENTORY[0].year + ' ' + INVENTORY[0].make + ' ' + INVENTORY[0].model);
+            console.log('OK: ' + INVENTORY.length + ' vehicles');
+            console.log('First: ' + INVENTORY[0].year + ' ' + INVENTORY[0].make + ' ' + INVENTORY[0].model + ' \$' + INVENTORY[0].price);
           "
+          mv inventory-data.js.new inventory-data.js
 
       - name: Commit if changed
         run: |
@@ -87,10 +85,5 @@ jobs:
           before=$(git show HEAD:inventory-data.js 2>/dev/null | grep -c '"stock":' || echo 0)
           after=$(grep -c '"stock":' inventory-data.js)
           git add inventory-data.js
-          git commit -m "Sync inventory: $before → $after vehicles [skip deploy]"
+          git commit -m "Sync inventory: $before → $after vehicles"
           git push
-
-      - name: Cleanup
-        if: always()
-        run: |
-          rm -rf csv-pull dealercenter_feed.csv
