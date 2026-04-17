@@ -7,10 +7,11 @@ name: Sync Inventory
 # FTP is the bulletproof path: no OPcache issues, no PHP write failures,
 # no broken endpoints. Just: fetch CSV → parse → commit → deploy.
 
+# DISABLED: Hostinger blocks GitHub Actions runner IPs from FTP.
+# The actual sync runs locally via the Claude scheduled-task carucars-inventory-monitor.
+# Re-enable only if we find a way around the IP block (SFTP on port 65002 may work).
 on:
-  schedule:
-    - cron: '0 */2 * * *'       # Every 2 hours (catches DC's 3x/day push quickly)
-  workflow_dispatch:             # Manual trigger from Actions tab
+  workflow_dispatch:  # Manual only — see SKILL note             # Manual trigger from Actions tab
 
 permissions:
   contents: write
