@@ -1,0 +1,20 @@
+# Netlify build + routing config
+#
+# The key rule: force-proxy all .php requests to Hostinger. Netlify can't
+# execute PHP, so if we let it serve .php files from the repo it leaks the
+# source code (including any secret keys inside those files).
+
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*.php"
+  to = "https://yellowgreen-emu-225498.hostingersite.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "https://yellowgreen-emu-225498.hostingersite.com/:splat"
+  status = 200
+  force = false
