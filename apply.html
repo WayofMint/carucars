@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=7">
     <link rel="stylesheet" href="apply.css">
     <script type="application/ld+json">
     {
@@ -208,8 +208,22 @@
                         <input type="date" name="dob" required>
                     </div>
                     <div class="form-group">
-                        <label data-en="Driver's License #" data-es="# de Licencia">Driver's License #</label>
-                        <input type="text" name="drivers_license" placeholder="D123-456-78-901">
+                        <label data-en="Social Security Number" data-es="N&uacute;mero de Seguro Social">Social Security Number <span class="req">*</span></label>
+                        <input type="text" name="ssn" required placeholder="XXX-XX-XXXX" inputmode="numeric" pattern="[0-9\-]{9,11}" maxlength="11" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Driver's License #" data-es="# de Licencia">Driver's License # <span class="req">*</span></label>
+                        <input type="text" name="drivers_license" required placeholder="D123-456-78-901">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="DL State" data-es="Estado de Licencia">DL State <span class="req">*</span></label>
+                        <select name="drivers_license_state" required>
+                            <option value="">--</option>
+                            <option value="FL" selected>FL</option>
+                            <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-nav">
@@ -344,11 +358,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label data-en="Other Monthly Income (if any)" data-es="Otros Ingresos Mensuales (si aplica)">Other Monthly Income (if any)</label>
-                    <div class="input-prefix">
-                        <span>$</span>
-                        <input type="number" name="other_income" placeholder="0">
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label data-en="Form of Income" data-es="Forma de Ingreso">Form of Income <span class="req">*</span></label>
+                        <select name="form_of_income" required>
+                            <option value="">Select</option>
+                            <option value="W-2 (Paycheck)">W-2 (Paycheck)</option>
+                            <option value="1099 (Self-Employed)">1099 (Self-Employed)</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Direct Deposit">Direct Deposit</option>
+                            <option value="Check">Check</option>
+                            <option value="Social Security / SSI">Social Security / SSI</option>
+                            <option value="Disability">Disability</option>
+                            <option value="Pension / Retirement">Pension / Retirement</option>
+                            <option value="Child Support">Child Support</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Other Monthly Income (if any)" data-es="Otros Ingresos Mensuales (si aplica)">Other Monthly Income</label>
+                        <div class="input-prefix">
+                            <span>$</span>
+                            <input type="number" name="other_income" placeholder="0">
+                        </div>
                     </div>
                 </div>
                 <div class="form-nav">
@@ -555,7 +587,9 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
             '<tr><td ' + lbl + ' width="25%">Last Name</td><td ' + val + ' width="25%">' + (d.last_name||'') + '</td>' +
                 '<td ' + lbl + ' width="25%">First Name</td><td ' + val + ' width="25%">' + (d.first_name||'') + '</td></tr>' +
             '<tr><td ' + lbl + '>Date of Birth</td><td ' + val + '>' + (d.dob||'') + '</td>' +
-                '<td ' + lbl + '>Driver\'s License #</td><td ' + val + '>' + (d.drivers_license||'') + '</td></tr>' +
+                '<td ' + lbl + '>SSN</td><td ' + val + '>' + (d.ssn||'') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Driver\'s License #</td><td ' + val + '>' + (d.drivers_license||'') + '</td>' +
+                '<td ' + lbl + '>DL State</td><td ' + val + '>' + (d.drivers_license_state||'') + '</td></tr>' +
             '<tr><td ' + lbl + '>Phone</td><td ' + val + '>' + (d.phone||'') + '</td>' +
                 '<td ' + lbl + '>Email</td><td ' + val + '>' + (d.email||'') + '</td></tr>' +
         '</table></td></tr>' +
@@ -584,7 +618,8 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
                 '<td ' + lbl + '>Employer Phone</td><td ' + val + '>' + (d.employer_phone||'') + '</td></tr>' +
             '<tr><td ' + lbl + '>Pay Frequency</td><td ' + val + '>' + (d.pay_frequency||'') + '</td>' +
                 '<td ' + lbl + '>Amount per Paycheck</td><td ' + val + '>$' + (d.paycheck_amount||'0') + '</td></tr>' +
-            '<tr><td ' + lbl + '>Other Monthly Income</td><td ' + val + ' colspan="3">$' + (d.other_income||'0') + '</td></tr>' +
+            '<tr><td ' + lbl + '>Form of Income</td><td ' + val + '>' + (d.form_of_income||'') + '</td>' +
+                '<td ' + lbl + '>Other Monthly Income</td><td ' + val + '>$' + (d.other_income||'0') + '</td></tr>' +
         '</table></td></tr>' +
 
         // Section D: Vehicle & Financing
@@ -637,7 +672,8 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
     w3fd.append('Phone', d.phone || '');
     w3fd.append('Email', d.email || '');
     w3fd.append('Date of Birth', d.dob || '');
-    w3fd.append('Drivers License', d.drivers_license || '');
+    w3fd.append('SSN', d.ssn || '');
+    w3fd.append('Drivers License', (d.drivers_license || '') + ' (' + (d.drivers_license_state || '') + ')');
     w3fd.append('Address', (d.address||'') + ', ' + (d.city||'') + ', ' + (d.state||'') + ' ' + (d.zip||''));
     w3fd.append('Residence Type', d.residence_type || '');
     w3fd.append('Monthly Rent/Mortgage', '$' + (d.monthly_housing || '0'));
@@ -648,6 +684,7 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
     w3fd.append('Time on Job', (d.job_years||'0') + ' yr, ' + (d.job_months||'0') + ' mo');
     w3fd.append('Pay Frequency', d.pay_frequency || '');
     w3fd.append('Amount per Paycheck', '$' + (d.paycheck_amount || '0'));
+    w3fd.append('Form of Income', d.form_of_income || '');
     w3fd.append('Other Monthly Income', '$' + (d.other_income || '0'));
     w3fd.append('Vehicle Interest', d.vehicle_interest || 'Any');
     w3fd.append('Desired Loan Amount', '$' + (d.loan_amount || ''));
