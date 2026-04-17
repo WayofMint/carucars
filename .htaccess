@@ -9,9 +9,8 @@ RewriteRule ^apply$                /apply.html [R=301,L,NC]
 RewriteRule ^inventory\.aspx$      /inventory.html [R=301,L,NC]
 RewriteRule ^contact\.aspx$        /contact.html [R=301,L,NC]
 
-# Block direct web access to log file. CSV block temporarily lifted so the
-# bootstrap sync can pull — will be restored in the next commit.
-<FilesMatch "^sync-log\.txt$">
+# Block direct web access to log + CSV files
+<FilesMatch "^(sync-log\.txt|DealerCenter_.*\.csv|dealercenter_feed\.csv)$">
     Require all denied
 </FilesMatch>
 
