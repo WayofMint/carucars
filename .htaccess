@@ -10,8 +10,14 @@ RewriteRule ^inventory\.aspx$      /inventory.html [R=301,L,NC]
 RewriteRule ^contact\.aspx$        /contact.html [R=301,L,NC]
 
 # Block direct web access to log + CSV files
-<FilesMatch "^(sync-log\.txt|DealerCenter_.*\.csv|dealercenter_feed\.csv)$">
+# TEMPORARY: allow DealerCenter CSV download with secret UA token so the
+# GitHub Actions sync can fetch the feed. Revert once OPcache is sorted.
+<FilesMatch "^(sync-log\.txt|dealercenter_feed\.csv)$">
     Require all denied
+</FilesMatch>
+<FilesMatch "^DealerCenter_.*\.csv$">
+    SetEnvIf User-Agent "^carucars-pull/gK7pQn2vX9wR$" csv_allow
+    Require env csv_allow
 </FilesMatch>
 
 # inventory-data.js must stay fresh — customers see sold cars if it's cached.
