@@ -1,15 +1,16 @@
 name: Sync Inventory
 
-# Pulls the latest DealerCenter feed from Hostinger's /vehicles-1cd17316.php endpoint,
-# wraps it as inventory-data.js, commits to main. Netlify auto-deploys the
-# commit to carucars.com.
+# Pulls the latest DealerCenter CSV directly from Hostinger via FTP, builds
+# inventory-data.js locally (no Hostinger PHP dependency), commits to main.
+# Netlify auto-deploys on commit.
 #
-# Schedule: 3x/day shortly after DealerCenter's FTP push.
+# FTP is the bulletproof path: no OPcache issues, no PHP write failures,
+# no broken endpoints. Just: fetch CSV → parse → commit → deploy.
 
 on:
   schedule:
-    - cron: '15 12,18,0 * * *'   # ~8am, 2pm, 8pm ET
-  workflow_dispatch:
+    - cron: '0 */2 * * *'       # Every 2 hours (catches DC's 3x/day push quickly)
+  workflow_dispatch:             # Manual trigger from Actions tab
 
 permissions:
   contents: write
@@ -20,57 +21,97 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch vehicles from Hostinger feed
-        env:
-          KEY: carucars-sync-2026-x9f4
-        run: |
-          curl -fsS --max-time 45 \
-            "https://yellowgreen-emu-225498.hostingersite.com/vehicles-1cd17316.php?key=$KEY" \
-            -o vehicles.json
-          echo "Fetched $(wc -c < vehicles.json) bytes"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-      - name: Validate
+      - name: Download latest DealerCenter CSV via FTP
+        env:
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
         run: |
-          count=$(jq 'length' vehicles.json)
-          echo "Vehicles: $count"
-          if [ "$count" -lt 10 ]; then
-            echo "::error::Only $count vehicles — refusing to commit."
+          # List all DealerCenter CSVs on Hostinger, find newest by filename
+          LATEST=$(curl -s --insecure "ftp://82.25.87.207/" \
+                   --user "$FTP_USER:$FTP_PASS" \
+                   | grep -oE 'DealerCenter_[0-9]+_[0-9]+\.csv' \
+                   | sort -u | tail -1)
+
+          if [ -z "$LATEST" ]; then
+            echo "::error::No DealerCenter CSV found on Hostinger. DC FTP push may be broken."
+            exit 1
+          fi
+          echo "Latest CSV: $LATEST"
+          echo "LATEST_CSV=$LATEST" >> "$GITHUB_ENV"
+
+          # Download it
+          curl -s --insecure "ftp://82.25.87.207/$LATEST" \
+            --user "$FTP_USER:$FTP_PASS" \
+            -o dealercenter_feed.csv
+
+          SIZE=$(wc -c < dealercenter_feed.csv)
+          LINES=$(wc -l < dealercenter_feed.csv)
+          echo "Downloaded: ${SIZE} bytes, ${LINES} lines"
+
+          if [ "$SIZE" -lt 1000 ]; then
+            echo "::error::CSV too small (${SIZE} bytes) — likely failed download."
             exit 1
           fi
 
       - name: Build inventory-data.js
+        run: python3 scripts/build_inventory.py
+
+      - name: Validate output
         run: |
-          count=$(jq 'length' vehicles.json)
-          {
-            echo "/* ============================================"
-            echo "   CARU CARS — Inventory Data"
-            echo "   Auto-generated from DealerCenter feed"
-            echo "   $count vehicles"
-            echo "   Built: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            echo "   ============================================ */"
-            echo ""
-            printf 'const INVENTORY = '
-            cat vehicles.json
-            echo ';'
-          } > inventory-data.js
-          rm vehicles.json
+          if [ ! -f inventory-data.js ]; then
+            echo "::error::inventory-data.js not created"
+            exit 1
+          fi
+
+          COUNT=$(grep -c '"stock"' inventory-data.js || echo 0)
+          echo "Built inventory-data.js with $COUNT vehicles"
+
+          if [ "$COUNT" -lt 10 ]; then
+            echo "::error::Only $COUNT vehicles — refusing to commit."
+            exit 1
+          fi
+
+          # Quick sanity check: valid JS
           node -e "
-            require('fs').readFileSync('inventory-data.js','utf8');
-            eval(require('fs').readFileSync('inventory-data.js','utf8'));
-            if (!Array.isArray(INVENTORY) || INVENTORY.length < 10) throw new Error('bad output');
-            console.log('OK', INVENTORY.length, 'vehicles');
+            const fs = require('fs');
+            const content = fs.readFileSync('inventory-data.js', 'utf8');
+            eval(content);
+            if (!Array.isArray(INVENTORY)) throw new Error('INVENTORY not array');
+            if (INVENTORY.length !== $COUNT) throw new Error('count mismatch');
+            console.log('Valid JS with', INVENTORY.length, 'vehicles');
           "
 
       - name: Commit if changed
         run: |
+          # Clean up the temp CSV (don't commit it — .gitignore should catch this)
+          rm -f dealercenter_feed.csv
+
           git config user.name "carucars-sync-bot"
-          git config user.email "bot@wayofmint.com"
+          git config user.email "sync@carucars.com"
+
           if git diff --quiet inventory-data.js; then
-            echo "No change."
+            echo "No inventory changes."
             exit 0
           fi
-          before=$(git show HEAD:inventory-data.js 2>/dev/null | grep -c '"stock":' || echo 0)
-          after=$(grep -c '"stock":' inventory-data.js)
+
+          BEFORE=$(git show HEAD:inventory-data.js 2>/dev/null | grep -c '"stock"' || echo 0)
+          AFTER=$(grep -c '"stock"' inventory-data.js)
+
           git add inventory-data.js
-          git commit -m "Sync inventory: $before → $after vehicles"
+          git commit -m "Sync inventory: ${BEFORE} → ${AFTER} vehicles (from ${LATEST_CSV})"
           git push
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Inventory Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **CSV:** \`${LATEST_CSV:-unknown}\`" >> $GITHUB_STEP_SUMMARY
+          if [ -f inventory-data.js ]; then
+            COUNT=$(grep -c '"stock"' inventory-data.js || echo 0)
+            echo "- **Vehicles:** ${COUNT}" >> $GITHUB_STEP_SUMMARY
+          fi
