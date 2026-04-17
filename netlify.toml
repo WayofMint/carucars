@@ -1,11 +1,18 @@
-# Netlify build + routing config
+# Netlify config for CaruCars
 #
-# The key rule: force-proxy all .php requests to Hostinger. Netlify can't
-# execute PHP, so if we let it serve .php files from the repo it leaks the
-# source code (including any secret keys inside those files).
+# Problem we're solving: Netlify can't execute PHP, so if a .php file exists
+# in the publish dir it serves the raw source (leaking code + secrets).
+# We fix it two ways, belt and suspenders:
+#   1. Delete all .php files from the Netlify build output, so there's
+#      nothing to serve locally.
+#   2. Force-proxy any /*.php request to Hostinger, which runs the PHP.
+#
+# The PHP files stay in the repo (unchanged) for the GitHub Actions deploy
+# to Hostinger. This only affects Netlify's copy.
 
 [build]
   publish = "."
+  command = "find . -maxdepth 1 -name '*.php' -type f -delete && echo 'PHP stripped from Netlify publish'"
 
 [[redirects]]
   from = "/*.php"
