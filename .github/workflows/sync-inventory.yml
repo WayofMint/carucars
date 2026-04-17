@@ -1,6 +1,6 @@
 name: Sync Inventory
 
-# Pulls the latest DealerCenter feed from Hostinger's /inventory-feed.php endpoint,
+# Pulls the latest DealerCenter feed from Hostinger's /dc-vehicles.php endpoint,
 # wraps it as inventory-data.js, commits to main. Netlify auto-deploys the
 # commit to carucars.com.
 #
@@ -25,7 +25,7 @@ jobs:
           KEY: carucars-sync-2026-x9f4
         run: |
           curl -fsS --max-time 45 \
-            "https://yellowgreen-emu-225498.hostingersite.com/inventory-feed.php?key=$KEY" \
+            "https://yellowgreen-emu-225498.hostingersite.com/dc-vehicles.php?key=$KEY" \
             -o vehicles.json
           echo "Fetched $(wc -c < vehicles.json) bytes"
 
