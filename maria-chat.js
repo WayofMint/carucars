@@ -60,6 +60,9 @@
                         '<div class="lead-form-group">' +
                             '<input type="text" id="leadZip" placeholder="' + (lang === 'es' ? 'C\u00f3digo Postal' : 'Zip Code') + '" data-en="Zip Code" data-es="C&oacute;digo Postal" inputmode="numeric" pattern="[0-9]{5}" maxlength="5">' +
                         '</div>' +
+                        '<div class="lead-form-group">' +
+                            '<textarea id="leadMessage" rows="3" placeholder="' + (lang === 'es' ? 'Mensaje o pregunta (opcional)' : 'Message or question (optional)') + '" data-en="Message or question (optional)" data-es="Mensaje o pregunta (opcional)"></textarea>' +
+                        '</div>' +
                         '<button type="submit" class="lead-submit-btn" data-en="Get Pre-Approved Today!" data-es="&iexcl;Pre-Apr&oacute;bate Hoy!">' +
                         (lang === 'es' ? '\u00a1Pre-Apru\u00e9bate Hoy!' : 'Get Pre-Approved Today!') +
                         '</button>' +
@@ -128,6 +131,8 @@
         var phone = document.getElementById('leadPhone').value;
         var email = document.getElementById('leadEmail').value;
         var zip = document.getElementById('leadZip').value;
+        var messageEl = document.getElementById('leadMessage');
+        var message = messageEl ? messageEl.value : '';
 
         var formData = new FormData();
         formData.append('access_key', '2521447a-cb11-4639-b08f-9c11d8cb7cec');
@@ -136,6 +141,7 @@
         formData.append('phone', phone);
         formData.append('email', email || 'N/A');
         formData.append('zip', zip || 'N/A');
+        if (message) formData.append('message', message);
 
         fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
             .then(function(r) { return r.json(); })
@@ -154,7 +160,8 @@
                         name: name,
                         phone: phone,
                         email: email,
-                        zip: zip
+                        zip: zip,
+                        message: message
                     })
                 }).catch(function(){});
             })
