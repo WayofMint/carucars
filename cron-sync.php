@@ -4,9 +4,9 @@
  * Finds latest DealerCenter CSV on server, rebuilds inventory-data.js
  * Runs via cron 3x/day or URL with secret key
  */
-// Force OPcache to re-read our own source after deploys — otherwise a file
-// edit via FTP silently keeps running old compiled bytecode for a minute+.
-if (function_exists('opcache_invalidate')) { opcache_invalidate(__FILE__, true); }
+// Force OPcache to fully reset after deploys — otherwise a file edit via FTP
+// silently keeps running old compiled bytecode. Brute-force but reliable.
+if (function_exists('opcache_reset')) { @opcache_reset(); }
 
 $secret = 'carucars-sync-2026-x9f4';
 if (php_sapi_name() !== 'cli' && ($_GET['key'] ?? '') !== $secret) { http_response_code(403); die('Forbidden'); }

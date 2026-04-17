@@ -18,17 +18,16 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clear OPcache (so latest PHP fix is active)
-        run: |
-          curl -sS --max-time 15 "https://yellowgreen-emu-225498.hostingersite.com/opcache-reset.php?key=carucars-sync-2026-x9f4" || true
-          echo
-
       - name: Trigger Hostinger server-side CSV → JS rebuild
         run: |
           # Hostinger's cron-sync.php parses the DealerCenter CSV (which lives
           # under a separate FTP account not accessible to our FTP user) and
           # writes a fresh inventory-data.js. Runs as the web server user so
           # it has read access to whatever DC uploaded.
+          # Double-hit: first call clears PHP OPcache for itself; second call
+          # runs under fresh bytecode.
+          curl -sS --max-time 60 "https://yellowgreen-emu-225498.hostingersite.com/cron-sync.php?key=carucars-sync-2026-x9f4" > /dev/null
+          sleep 3
           result=$(curl -sS --max-time 60 \
             "https://yellowgreen-emu-225498.hostingersite.com/cron-sync.php?key=carucars-sync-2026-x9f4")
           echo "$result"
