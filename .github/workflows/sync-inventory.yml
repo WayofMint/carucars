@@ -37,7 +37,7 @@ jobs:
           # that root and grep for any DealerCenter_* file.
 
           # First: list FTP root and look for CSVs
-          LISTING=$(curl -sS --max-time 30 "ftp://82.25.87.207/" \
+          LISTING=$(curl -sS --ftp-pasv --max-time 30 "ftp://82.25.87.207/" \
                     --user "$FTP_USER:$FTP_PASS")
           echo "FTP listing (first 20 lines):"
           echo "$LISTING" | head -20
@@ -51,7 +51,7 @@ jobs:
               DATE=$(date -u -d "-${days_back} days" +%Y%m%d)
               FNAME="DealerCenter_${DATE}_12327535.csv"
               # Try to download; 0 bytes = doesn't exist
-              curl -sS --max-time 20 "ftp://82.25.87.207/${FNAME}" \
+              curl -sS --ftp-pasv --max-time 20 "ftp://82.25.87.207/${FNAME}" \
                    --user "$FTP_USER:$FTP_PASS" -o /tmp/try.csv 2>/dev/null
               if [ -s /tmp/try.csv ] && [ "$(wc -c < /tmp/try.csv)" -gt 1000 ]; then
                 LATEST="$FNAME"
@@ -72,7 +72,7 @@ jobs:
 
           # If fallback already downloaded, skip — otherwise fetch now
           if [ ! -s dealercenter_feed.csv ]; then
-            curl -sS --max-time 30 "ftp://82.25.87.207/${LATEST}" \
+            curl -sS --ftp-pasv --max-time 30 "ftp://82.25.87.207/${LATEST}" \
               --user "$FTP_USER:$FTP_PASS" \
               -o dealercenter_feed.csv
           fi
