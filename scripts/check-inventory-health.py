@@ -65,7 +65,7 @@ def main() -> int:
         print(f"  - {issue}", file=sys.stderr)
     print("", file=sys.stderr)
     print("  CSV on Hostinger:   " + str(data.get("csv")), file=sys.stderr)
-    print("  feed.php response:  " + str(data.get("feed_php")), file=sys.stderr)
+    print("  feed.php response:  " + str(data.get("inventory_feed")), file=sys.stderr)
     print("  carucars.com state: " + str(data.get("production")), file=sys.stderr)
     print("", file=sys.stderr)
 

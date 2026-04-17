@@ -7,7 +7,7 @@
  *
  * Checks three things:
  *   1. DealerCenter CSV freshness on Hostinger (is DC still pushing?)
- *   2. The /feed.php endpoint (can we parse the CSV?)
+ *   2. The /inventory-feed.php endpoint (can we parse the CSV?)
  *   3. carucars.com/inventory-data.js (what customers actually see)
  */
 header('Content-Type: application/json');
@@ -21,7 +21,7 @@ if (($_GET['key'] ?? '') !== 'carucars-health-2026') {
 $status = [
     'timestamp' => date('c'),
     'csv'        => ['present' => false, 'latest' => null, 'age_hours' => null],
-    'feed_php'   => ['reachable' => false, 'vehicle_count' => 0],
+    'inventory_feed'   => ['reachable' => false, 'vehicle_count' => 0],
     'production' => ['reachable' => false, 'vehicle_count' => 0],
     'healthy'    => false,
     'issues'     => [],
@@ -47,24 +47,24 @@ if ($csvs) {
     $status['issues'][] = 'CSV_MISSING: no DealerCenter CSV on Hostinger';
 }
 
-// 2. feed.php endpoint (server-side parse)
+// 2. inventory-feed.php endpoint (server-side parse)
 $feed = @file_get_contents(
-    'https://yellowgreen-emu-225498.hostingersite.com/feed.php?key=carucars-sync-2026-x9f4',
+    'https://yellowgreen-emu-225498.hostingersite.com/inventory-feed.php?key=carucars-sync-2026-x9f4',
     false,
     stream_context_create(['http' => ['timeout' => 10]])
 );
 if ($feed !== false) {
     $arr = json_decode($feed, true);
     if (is_array($arr)) {
-        $status['feed_php'] = ['reachable' => true, 'vehicle_count' => count($arr)];
+        $status['inventory_feed'] = ['reachable' => true, 'vehicle_count' => count($arr)];
         if (count($arr) < 5) {
-            $status['issues'][] = 'FEED_TOO_FEW: feed.php returned only ' . count($arr) . ' vehicles';
+            $status['issues'][] = 'FEED_TOO_FEW: inventory-feed.php returned only ' . count($arr) . ' vehicles';
         }
     } else {
-        $status['issues'][] = 'FEED_INVALID: feed.php did not return a JSON array';
+        $status['issues'][] = 'FEED_INVALID: inventory-feed.php did not return a JSON array';
     }
 } else {
-    $status['issues'][] = 'FEED_UNREACHABLE: feed.php failed';
+    $status['issues'][] = 'FEED_UNREACHABLE: inventory-feed.php failed';
 }
 
 // 3. Production — what customers see on carucars.com
