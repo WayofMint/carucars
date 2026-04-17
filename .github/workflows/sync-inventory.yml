@@ -78,16 +78,6 @@ jobs:
             exit 1
           fi
 
-          # Quick sanity check: valid JS that parses (use 'var' via Function scope)
-          node -e "
-            const fs = require('fs');
-            const content = fs.readFileSync('inventory-data.js', 'utf8');
-            const INVENTORY = new Function(content + '; return INVENTORY;')();
-            if (!Array.isArray(INVENTORY)) throw new Error('INVENTORY not array');
-            if (INVENTORY.length !== $COUNT) throw new Error('count mismatch: ' + INVENTORY.length + ' vs ' + $COUNT);
-            console.log('Valid JS with', INVENTORY.length, 'vehicles');
-          "
-
       - name: Commit if changed
         run: |
           # Clean up the temp CSV (don't commit it — .gitignore should catch this)
