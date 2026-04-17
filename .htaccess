@@ -1,80 +1,23 @@
-# ── CARU CARS — Redirects ───────────────────────────────────────────────────────
-# Redirect old DealerCenter/Carsforsale URLs to new pages
+# ── CARU CARS ───────────────────────────────────────────────────────────────────
 RewriteEngine On
+
+# Legacy URL redirects (DealerCenter / Carsforsale → new pages)
 RewriteRule ^loanapplication\.aspx$ /apply.html [R=301,L,NC]
-RewriteRule ^loan-application$ /apply.html [R=301,L,NC]
-RewriteRule ^finance$ /apply.html [R=301,L,NC]
-RewriteRule ^apply$ /apply.html [R=301,L,NC]
-RewriteRule ^inventory\.aspx$ /inventory.html [R=301,L,NC]
-RewriteRule ^contact\.aspx$ /contact.html [R=301,L,NC]
+RewriteRule ^loan-application$     /apply.html [R=301,L,NC]
+RewriteRule ^finance$              /apply.html [R=301,L,NC]
+RewriteRule ^apply$                /apply.html [R=301,L,NC]
+RewriteRule ^inventory\.aspx$      /inventory.html [R=301,L,NC]
+RewriteRule ^contact\.aspx$        /contact.html [R=301,L,NC]
 
-# ── Security Rules ──────────────────────────────────────────────────────────────
-# Block direct web access to sync script, CSV feeds, and log files.
-# These should only be accessed by cron/FTP, never by browsers.
-
-# Block sync script
-<Files "sync-inventory.php">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order deny,allow
-        Deny from all
-    </IfModule>
-</Files>
-
-# Block all DealerCenter CSV files
-<FilesMatch "^DealerCenter_.*\.csv$">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order deny,allow
-        Deny from all
-    </IfModule>
+# Block direct web access to log + CSV files
+<FilesMatch "^(sync-log\.txt|DealerCenter_.*\.csv|dealercenter_feed\.csv)$">
+    Require all denied
 </FilesMatch>
 
-# Block the sync log
-<Files "sync-log.txt">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order deny,allow
-        Deny from all
-    </IfModule>
-</Files>
-
-# Block the original Python build script if present
-<Files "build-inventory.py">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order deny,allow
-        Deny from all
-    </IfModule>
-</Files>
-
-# Block the raw CSV feed file if present
-<Files "dealercenter_feed.csv">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order deny,allow
-        Deny from all
-    </IfModule>
-</Files>
-
-# ── Cache Control ───────────────────────────────────────────────────────────────
-# inventory-data.js MUST be fresh — customers see stale inventory if cached.
-# Hostinger defaults to 7-day cache on JS files; override for this one file.
+# inventory-data.js must stay fresh — customers see sold cars if it's cached.
 <Files "inventory-data.js">
     <IfModule mod_headers.c>
         Header set Cache-Control "public, max-age=300, must-revalidate"
         Header unset Expires
-        Header unset ETag
-        FileETag None
     </IfModule>
 </Files>

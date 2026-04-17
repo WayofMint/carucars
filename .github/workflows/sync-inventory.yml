@@ -1,10 +1,14 @@
 name: Sync Inventory
 
+# Pulls the latest DealerCenter feed from Hostinger's /feed.php endpoint,
+# wraps it as inventory-data.js, commits to main. Netlify auto-deploys the
+# commit to carucars.com.
+#
+# Schedule: 3x/day shortly after DealerCenter's FTP push.
+
 on:
   schedule:
-    # DealerCenter pushes CSV 3x/day. Sync shortly after each push.
-    # UTC times: 12:15, 18:15, 00:15 = ET ~8am, 2pm, 8pm
-    - cron: '15 12,18,0 * * *'
+    - cron: '15 12,18,0 * * *'   # ~8am, 2pm, 8pm ET
   workflow_dispatch:
 
 permissions:
@@ -15,70 +19,54 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Trigger Hostinger server-side CSV → JS rebuild
+      - name: Fetch vehicles from Hostinger feed
+        env:
+          KEY: carucars-sync-2026-x9f4
         run: |
-          # Hostinger's cron-sync.php parses the DealerCenter CSV (which lives
-          # under a separate FTP account not accessible to our FTP user) and
-          # writes a fresh inventory-data.js. Runs as the web server user so
-          # it has read access to whatever DC uploaded.
-          # Double-hit: first call clears PHP OPcache for itself; second call
-          # runs under fresh bytecode.
-          curl -sS --max-time 60 "https://yellowgreen-emu-225498.hostingersite.com/cron-sync.php?key=carucars-sync-2026-x9f4" > /dev/null
-          sleep 3
-          result=$(curl -sS --max-time 60 \
-            "https://yellowgreen-emu-225498.hostingersite.com/cron-sync.php?key=carucars-sync-2026-x9f4")
-          echo "$result"
-          if echo "$result" | grep -qiE "abort|error|forbidden"; then
-            echo "::error::Hostinger rebuild failed: $result"
-            exit 1
-          fi
-          if ! echo "$result" | grep -q "OK:"; then
-            echo "::error::Unexpected rebuild response: $result"
+          curl -fsS --max-time 45 \
+            "https://yellowgreen-emu-225498.hostingersite.com/feed.php?key=$KEY" \
+            -o vehicles.json
+          echo "Fetched $(wc -c < vehicles.json) bytes"
+
+      - name: Validate
+        run: |
+          count=$(jq 'length' vehicles.json)
+          echo "Vehicles: $count"
+          if [ "$count" -lt 10 ]; then
+            echo "::error::Only $count vehicles — refusing to commit."
             exit 1
           fi
 
-      - name: Fetch freshly rebuilt inventory-data.js
+      - name: Build inventory-data.js
         run: |
-          # Cache-bust to make sure we pull origin (not CDN).
-          cb="$(date +%s)-$RANDOM"
-          curl -sS --max-time 30 --compressed \
-            -H "Cache-Control: no-cache" -H "Pragma: no-cache" \
-            "https://yellowgreen-emu-225498.hostingersite.com/inventory-data.js?cb=$cb" \
-            -o inventory-data.js.new
-          wc -c inventory-data.js.new
-          head -5 inventory-data.js.new
-
-      - name: Validate fetched file
-        run: |
-          # Must be a syntactically-valid JS file with an INVENTORY array of
-          # at least 10 vehicles. Reject anything smaller / broken.
-          size=$(wc -c < inventory-data.js.new)
-          if [ "$size" -lt 10000 ]; then
-            echo "::error::Fetched file is suspiciously small ($size bytes). Refusing to commit."
-            cat inventory-data.js.new
-            exit 1
-          fi
+          count=$(jq 'length' vehicles.json)
+          {
+            echo "/* ============================================"
+            echo "   CARU CARS — Inventory Data"
+            echo "   Auto-generated from DealerCenter feed"
+            echo "   $count vehicles"
+            echo "   Built: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "   ============================================ */"
+            echo ""
+            printf 'const INVENTORY = '
+            cat vehicles.json
+            echo ';'
+          } > inventory-data.js
+          rm vehicles.json
           node -e "
-            const fs = require('fs');
-            const code = fs.readFileSync('inventory-data.js.new', 'utf8');
-            eval(code);
-            if (typeof INVENTORY === 'undefined') throw new Error('INVENTORY not defined');
-            if (!Array.isArray(INVENTORY)) throw new Error('INVENTORY not an array');
-            if (INVENTORY.length < 10) throw new Error('Too few vehicles: ' + INVENTORY.length);
-            console.log('OK: ' + INVENTORY.length + ' vehicles');
-            console.log('First: ' + INVENTORY[0].year + ' ' + INVENTORY[0].make + ' ' + INVENTORY[0].model + ' \$' + INVENTORY[0].price);
+            require('fs').readFileSync('inventory-data.js','utf8');
+            eval(require('fs').readFileSync('inventory-data.js','utf8'));
+            if (!Array.isArray(INVENTORY) || INVENTORY.length < 10) throw new Error('bad output');
+            console.log('OK', INVENTORY.length, 'vehicles');
           "
-          mv inventory-data.js.new inventory-data.js
 
       - name: Commit if changed
         run: |
           git config user.name "carucars-sync-bot"
           git config user.email "bot@wayofmint.com"
           if git diff --quiet inventory-data.js; then
-            echo "No inventory changes — nothing to commit."
+            echo "No change."
             exit 0
           fi
           before=$(git show HEAD:inventory-data.js 2>/dev/null | grep -c '"stock":' || echo 0)
