@@ -66,3 +66,15 @@ RewriteRule ^contact\.aspx$ /contact.html [R=301,L,NC]
         Deny from all
     </IfModule>
 </Files>
+
+# ── Cache Control ───────────────────────────────────────────────────────────────
+# inventory-data.js MUST be fresh — customers see stale inventory if cached.
+# Hostinger defaults to 7-day cache on JS files; override for this one file.
+<Files "inventory-data.js">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+        Header unset Expires
+        Header unset ETag
+        FileETag None
+    </IfModule>
+</Files>

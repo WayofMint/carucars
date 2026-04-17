@@ -133,11 +133,23 @@ function parseCsv(string $csvPath): array
 {
     $vehicles = [];
 
-    $fh = fopen($csvPath, 'r');
-    if ($fh === false) {
-        logMsg("ERROR: Cannot open CSV file: {$csvPath}");
+    // DealerCenter exports CP1252 encoding (Spanish accents break strict UTF-8).
+    // Read the whole file, convert to UTF-8, then parse from memory.
+    $raw = file_get_contents($csvPath);
+    if ($raw === false) {
+        logMsg("ERROR: Cannot read CSV file: {$csvPath}");
         return [];
     }
+    if (!mb_check_encoding($raw, 'UTF-8')) {
+        $raw = mb_convert_encoding($raw, 'UTF-8', 'Windows-1252');
+    }
+    $fh = tmpfile();
+    if ($fh === false) {
+        logMsg("ERROR: Cannot create tmpfile for CSV parsing");
+        return [];
+    }
+    fwrite($fh, $raw);
+    fseek($fh, 0);
 
     // Read header row
     $header = fgetcsv($fh);
@@ -235,7 +247,11 @@ function parseCsv(string $csvPath): array
 function writeJs(array $vehicles): bool
 {
     $count = count($vehicles);
-    $json  = json_encode($vehicles, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    if ($count < 5) {
+        logMsg("ABORT: only {$count} vehicles — refusing to overwrite inventory-data.js");
+        return false;
+    }
+    $json  = json_encode($vehicles, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
 
     if ($json === false) {
         logMsg("ERROR: JSON encode failed — " . json_last_error_msg());

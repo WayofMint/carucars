@@ -1,0 +1,96 @@
+name: Sync Inventory
+
+on:
+  schedule:
+    # DealerCenter pushes CSV 3x/day. Sync shortly after each push.
+    # UTC times: 12:00, 18:00, 00:00 = ET 8am, 2pm, 8pm
+    - cron: '10 12,18,0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Pull latest CSV from Hostinger
+        env:
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          mkdir -p csv-pull
+          lftp -c "
+            set ftp:ssl-allow no;
+            set ftp:passive-mode true;
+            set net:timeout 30;
+            set net:max-retries 3;
+            set net:reconnect-interval-base 5;
+            open -u \"$FTP_USER\",\"$FTP_PASS\" ftp://82.25.87.207;
+            lcd csv-pull;
+            cd /public_html;
+            mget -E DealerCenter_*.csv || true;
+            bye
+          "
+          ls -la csv-pull/
+          # Find the newest CSV (Hostinger keeps ~3 per cron-sync cleanup)
+          latest=$(ls -t csv-pull/DealerCenter_*.csv 2>/dev/null | head -1)
+          if [ -z "$latest" ]; then
+            echo "::error::No DealerCenter CSV found on Hostinger. DC FTP push may be broken."
+            exit 1
+          fi
+          echo "Using: $latest ($(wc -l < "$latest") lines)"
+          cp "$latest" dealercenter_feed.csv
+
+      - name: Rebuild inventory-data.js
+        run: |
+          python3 build-inventory.py
+          echo "--- output size ---"
+          wc -c inventory-data.js
+          head -5 inventory-data.js
+
+      - name: Sanity check
+        run: |
+          # Require minimum vehicle count and valid JS syntax
+          count=$(grep -c '"stock":' inventory-data.js || echo 0)
+          echo "Parsed $count vehicles"
+          if [ "$count" -lt 10 ]; then
+            echo "::error::Only $count vehicles parsed — suspiciously low. Aborting commit."
+            exit 1
+          fi
+          # Verify JS is syntactically valid
+          node -e "
+            const fs = require('fs');
+            const code = fs.readFileSync('inventory-data.js', 'utf8');
+            eval(code);
+            if (typeof INVENTORY === 'undefined') throw new Error('INVENTORY not defined');
+            if (!Array.isArray(INVENTORY)) throw new Error('INVENTORY not an array');
+            if (INVENTORY.length < 10) throw new Error('Too few vehicles: ' + INVENTORY.length);
+            console.log('OK: ' + INVENTORY.length + ' vehicles, first=' + INVENTORY[0].year + ' ' + INVENTORY[0].make + ' ' + INVENTORY[0].model);
+          "
+
+      - name: Commit if changed
+        run: |
+          git config user.name "carucars-sync-bot"
+          git config user.email "bot@wayofmint.com"
+          if git diff --quiet inventory-data.js; then
+            echo "No inventory changes — nothing to commit."
+            exit 0
+          fi
+          before=$(git show HEAD:inventory-data.js 2>/dev/null | grep -c '"stock":' || echo 0)
+          after=$(grep -c '"stock":' inventory-data.js)
+          git add inventory-data.js
+          git commit -m "Sync inventory: $before → $after vehicles [skip deploy]"
+          git push
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -rf csv-pull dealercenter_feed.csv

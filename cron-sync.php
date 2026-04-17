@@ -31,8 +31,14 @@ usort($files, fn($a,$b) => filemtime($b) <=> filemtime($a));
 $csv = $files[0];
 lg('Using: '.basename($csv));
 
-// Parse
-$fh = fopen($csv,'r'); $hdr = fgetcsv($fh);
+// Parse — DealerCenter exports CP1252; convert to UTF-8 so json_encode doesn't fail.
+$raw = file_get_contents($csv);
+if ($raw === false) { lg('Cannot read CSV'); echo 'read error'; exit; }
+if (!mb_check_encoding($raw, 'UTF-8')) {
+    $raw = mb_convert_encoding($raw, 'UTF-8', 'Windows-1252');
+}
+$tmp = tmpfile(); fwrite($tmp, $raw); fseek($tmp, 0);
+$fh = $tmp; $hdr = fgetcsv($fh);
 $hdr = array_map(fn($h)=>trim($h,"\xEF\xBB\xBF \t\n\r\0\x0B"), $hdr);
 $col = array_flip($hdr); $vehicles = [];
 while (($r = fgetcsv($fh)) !== false) {
@@ -47,9 +53,11 @@ while (($r = fgetcsv($fh)) !== false) {
 fclose($fh);
 usort($vehicles, fn($a,$b) => $a['year']!==$b['year'] ? $b['year']<=>$a['year'] : $b['price']<=>$a['price']);
 
-// Write JS
+// Write JS — hard-fail on encode error instead of writing broken output
 $n = count($vehicles);
-$json = json_encode($vehicles, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+if ($n < 5) { lg("ABORT: only {$n} vehicles parsed — refusing to overwrite inventory"); echo "ABORT: too few vehicles ({$n})\n"; exit; }
+$json = json_encode($vehicles, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_SUBSTITUTE);
+if ($json === false) { lg('ABORT: json_encode failed - '.json_last_error_msg()); echo 'ABORT: json_encode failed'; exit; }
 $json = preg_replace_callback('/^(    +)/m', fn($m)=>str_repeat('  ',(int)(strlen($m[1])/4)), $json);
 $js = "/* ============================================\n   CARU CARS — Inventory Data\n   Auto-generated from DealerCenter feed\n   {$n} vehicles\n   ============================================ */\n\nconst INVENTORY = {$json};\n";
 file_put_contents(OUTPUT, $js, LOCK_EX);

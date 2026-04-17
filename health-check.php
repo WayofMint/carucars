@@ -1,8 +1,12 @@
 <?php
 /**
  * CARU CARS — Inventory Health Check
- * Verifies inventory-data.js is fresh and alerts if stale.
+ * Verifies inventory-data.js is fresh, syntactically valid, and has real vehicles.
  * Returns JSON status. Called by external scheduled task.
+ *
+ * NOTE: The customer-facing inventory is served by Netlify from the GitHub repo,
+ * not from Hostinger. This endpoint checks both the Hostinger copy (served as
+ * fallback) AND the production carucars.com copy.
  */
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -16,66 +20,94 @@ if ($key !== 'carucars-health-2026') {
 $jsFile = __DIR__ . '/inventory-data.js';
 $csvFiles = glob(__DIR__ . '/DealerCenter_*.csv');
 
+function parseVehicleCount(string $js): int {
+    // Actually parse the JS const, not the comment header.
+    if (!preg_match('/const\s+INVENTORY\s*=\s*(\[.*?\]);?\s*$/s', $js, $m)) {
+        return -1; // syntax-invalid
+    }
+    $arr = json_decode($m[1], true);
+    if (!is_array($arr)) return -1;
+    return count($arr);
+}
+
 $status = [
     'timestamp' => date('c'),
-    'inventory_js_exists' => file_exists($jsFile),
-    'inventory_js_age_hours' => null,
-    'inventory_js_modified' => null,
+    'hostinger' => [
+        'file_exists' => file_exists($jsFile),
+        'file_size' => file_exists($jsFile) ? filesize($jsFile) : 0,
+        'age_hours' => null,
+        'modified' => null,
+        'vehicle_count' => -1,
+        'parseable' => false,
+    ],
     'latest_csv' => null,
     'latest_csv_modified' => null,
     'csv_count' => count($csvFiles),
-    'vehicle_count' => 0,
+    'production' => null,
     'healthy' => false,
     'issues' => [],
 ];
 
-if (!$csvFiles) {
-    $status['issues'][] = 'NO CSV FILES FOUND - DealerCenter FTP may be broken';
-}
-
+// 1. Check Hostinger-local inventory-data.js (fallback copy)
 if (file_exists($jsFile)) {
     $ageSeconds = time() - filemtime($jsFile);
-    $status['inventory_js_age_hours'] = round($ageSeconds / 3600, 1);
-    $status['inventory_js_modified'] = date('c', filemtime($jsFile));
+    $status['hostinger']['age_hours'] = round($ageSeconds / 3600, 1);
+    $status['hostinger']['modified'] = date('c', filemtime($jsFile));
 
-    // Count vehicles in inventory-data.js
     $js = file_get_contents($jsFile);
-    if (preg_match('/(\d+) vehicles/', $js, $m)) {
-        $status['vehicle_count'] = (int)$m[1];
-    }
+    $count = parseVehicleCount($js);
+    $status['hostinger']['vehicle_count'] = $count;
+    $status['hostinger']['parseable'] = $count >= 0;
 
-    // Stale if older than 24 hours
-    if ($ageSeconds > 86400) {
-        $status['issues'][] = sprintf('INVENTORY STALE - inventory-data.js is %.1f hours old', $ageSeconds / 3600);
-    }
-
-    // If latest CSV is newer than JS by more than 12 hours, something is broken
-    if ($csvFiles) {
-        usort($csvFiles, function($a, $b) { return filemtime($b) - filemtime($a); });
-        $latestCsv = $csvFiles[0];
-        $status['latest_csv'] = basename($latestCsv);
-        $status['latest_csv_modified'] = date('c', filemtime($latestCsv));
-
-        if (filemtime($latestCsv) - filemtime($jsFile) > 43200) {
-            $status['issues'][] = sprintf(
-                'SYNC BROKEN - CSV (%s) is newer than inventory-data.js by %.1f hours',
-                basename($latestCsv),
-                (filemtime($latestCsv) - filemtime($jsFile)) / 3600
-            );
-        }
+    if ($count < 0) {
+        $status['issues'][] = 'HOSTINGER JS IS SYNTACTICALLY INVALID - cannot parse INVENTORY array';
+    } elseif ($count < 5) {
+        $status['issues'][] = sprintf('HOSTINGER JS HAS ONLY %d vehicles - likely broken', $count);
     }
 } else {
-    $status['issues'][] = 'CRITICAL - inventory-data.js does not exist';
+    $status['issues'][] = 'HOSTINGER inventory-data.js does not exist';
+}
+
+// 2. Check CSV freshness (DealerCenter FTP push health)
+if (!$csvFiles) {
+    $status['issues'][] = 'NO CSV FILES - DealerCenter FTP push may be broken';
+} else {
+    usort($csvFiles, fn($a, $b) => filemtime($b) - filemtime($a));
+    $latestCsv = $csvFiles[0];
+    $status['latest_csv'] = basename($latestCsv);
+    $status['latest_csv_modified'] = date('c', filemtime($latestCsv));
+    $csvAgeHours = (time() - filemtime($latestCsv)) / 3600;
+
+    if ($csvAgeHours > 36) {
+        $status['issues'][] = sprintf(
+            'CSV STALE - latest CSV is %.1f hours old (DealerCenter push may be broken)',
+            $csvAgeHours
+        );
+    }
+}
+
+// 3. Check production carucars.com inventory (what customers actually see)
+$ctx = stream_context_create(['http' => ['timeout' => 10, 'header' => 'Cache-Control: no-cache']]);
+$prodJs = @file_get_contents('https://carucars.com/inventory-data.js?cachebust=' . time(), false, $ctx);
+if ($prodJs === false) {
+    $status['issues'][] = 'PRODUCTION FETCH FAILED - could not reach carucars.com/inventory-data.js';
+    $status['production'] = ['reachable' => false];
+} else {
+    $prodCount = parseVehicleCount($prodJs);
+    $status['production'] = [
+        'reachable' => true,
+        'size' => strlen($prodJs),
+        'vehicle_count' => $prodCount,
+        'parseable' => $prodCount >= 0,
+    ];
+    if ($prodCount < 0) {
+        $status['issues'][] = 'PRODUCTION JS IS SYNTACTICALLY INVALID on carucars.com';
+    } elseif ($prodCount < 5) {
+        $status['issues'][] = sprintf('PRODUCTION shows only %d vehicles on carucars.com', $prodCount);
+    }
 }
 
 $status['healthy'] = empty($status['issues']);
-
-// Auto-trigger rebuild if stale
-if (!$status['healthy']) {
-    $ctx = stream_context_create(['http' => ['timeout' => 30]]);
-    @file_get_contents('https://yellowgreen-emu-225498.hostingersite.com/cron-sync.php?key=carucars-sync-2026-x9f4', false, $ctx);
-    $status['auto_rebuild_triggered'] = true;
-}
 
 // Log health check
 file_put_contents(__DIR__ . '/sync-log.txt',

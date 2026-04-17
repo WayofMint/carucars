@@ -37,10 +37,23 @@ def classify_type(model, equipment):
 def parse_feed():
     vehicles = []
 
-    with open(FEED_FILE, 'r', encoding='utf-8', errors='replace') as f:
+    # DealerCenter exports CSV as Windows-1252 (latin1) — Spanish accented chars
+    # break strict UTF-8. Try cp1252 first, fall back to UTF-8 with replacement.
+    try:
+        f = open(FEED_FILE, 'r', encoding='cp1252')
+        f.read(1)
+        f.seek(0)
+    except UnicodeDecodeError:
+        f = open(FEED_FILE, 'r', encoding='utf-8', errors='replace')
+
+    with f:
         reader = csv.DictReader(f)
         for row in reader:
+            # Filter out $0 price (not-for-sale / placeholder) vehicles.
+            # DealerCenter uses $0 as a status flag for sold/pending cars.
             price = int(row.get('SpecialPrice', '0') or '0')
+            if price <= 0:
+                continue
 
             # Split photos — space-separated in the CSV
             photo_urls = row.get('PhotoURLs', '').strip()
@@ -99,7 +112,16 @@ def write_js(vehicles):
 
 
 if __name__ == '__main__':
+    import sys
+    if not os.path.exists(FEED_FILE):
+        print(f'ERROR: {FEED_FILE} not found', file=sys.stderr)
+        sys.exit(1)
+
     vehicles = parse_feed()
+    if len(vehicles) < 5:
+        print(f'ERROR: only {len(vehicles)} vehicles parsed — CSV may be corrupted', file=sys.stderr)
+        sys.exit(1)
+
     write_js(vehicles)
 
     # Quick summary
