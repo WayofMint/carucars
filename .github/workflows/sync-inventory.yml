@@ -31,32 +31,58 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
         run: |
-          # IMPORTANT: The CSVs live OUTSIDE the FTP chroot (at the server's real /),
-          # not inside /public_html. The double-slash in the URL tells curl to use an
-          # absolute server path. Without it, listing the FTP home shows no CSVs.
-          LATEST=$(curl -s --insecure "ftp://82.25.87.207//" \
-                   --user "$FTP_USER:$FTP_PASS" \
-                   | grep -oE 'DealerCenter_[0-9]+_[0-9]+\.csv' \
-                   | sort -u | tail -1)
+          # DealerCenter drops CSVs with predictable names: DealerCenter_YYYYMMDD_12327535.csv
+          # Try today's date and walk back 7 days to find the newest that exists.
+          # The file lives at the FTP root (which is /public_html chroot) — we list
+          # that root and grep for any DealerCenter_* file.
+
+          # First: list FTP root and look for CSVs
+          LISTING=$(curl -sS --max-time 30 "ftp://82.25.87.207/" \
+                    --user "$FTP_USER:$FTP_PASS")
+          echo "FTP listing (first 20 lines):"
+          echo "$LISTING" | head -20
+
+          LATEST=$(echo "$LISTING" | grep -oE 'DealerCenter_[0-9]+_[0-9]+\.csv' | sort -u | tail -1)
+
+          # Fallback: walk back 7 days trying constructed filenames
+          if [ -z "$LATEST" ]; then
+            echo "No CSV in FTP listing, trying constructed filenames..."
+            for days_back in 0 1 2 3 4 5 6 7; do
+              DATE=$(date -u -d "-${days_back} days" +%Y%m%d)
+              FNAME="DealerCenter_${DATE}_12327535.csv"
+              # Try to download; 0 bytes = doesn't exist
+              curl -sS --max-time 20 "ftp://82.25.87.207/${FNAME}" \
+                   --user "$FTP_USER:$FTP_PASS" -o /tmp/try.csv 2>/dev/null
+              if [ -s /tmp/try.csv ] && [ "$(wc -c < /tmp/try.csv)" -gt 1000 ]; then
+                LATEST="$FNAME"
+                cp /tmp/try.csv dealercenter_feed.csv
+                echo "Found via fallback: $FNAME"
+                break
+              fi
+            done
+          fi
 
           if [ -z "$LATEST" ]; then
-            echo "::error::No DealerCenter CSV found. DC FTP push may be broken — contact Julius."
+            echo "::error::No DealerCenter CSV found. DC FTP push may be broken — contact Julius Pascua at Julius.Pascua@dealercenter.com (DCID 12327535)."
             exit 1
           fi
+
           echo "Latest CSV: $LATEST"
           echo "LATEST_CSV=$LATEST" >> "$GITHUB_ENV"
 
-          # Download it (same double-slash for absolute path)
-          curl -s --insecure "ftp://82.25.87.207//$LATEST" \
-            --user "$FTP_USER:$FTP_PASS" \
-            -o dealercenter_feed.csv
+          # If fallback already downloaded, skip — otherwise fetch now
+          if [ ! -s dealercenter_feed.csv ]; then
+            curl -sS --max-time 30 "ftp://82.25.87.207/${LATEST}" \
+              --user "$FTP_USER:$FTP_PASS" \
+              -o dealercenter_feed.csv
+          fi
 
           SIZE=$(wc -c < dealercenter_feed.csv)
           LINES=$(wc -l < dealercenter_feed.csv)
           echo "Downloaded: ${SIZE} bytes, ${LINES} lines"
 
           if [ "$SIZE" -lt 1000 ]; then
-            echo "::error::CSV too small (${SIZE} bytes) — likely failed download."
+            echo "::error::CSV too small (${SIZE} bytes) — download failed."
             exit 1
           fi
 
