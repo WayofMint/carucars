@@ -78,13 +78,13 @@ jobs:
             exit 1
           fi
 
-          # Quick sanity check: valid JS
+          # Quick sanity check: valid JS that parses (use 'var' via Function scope)
           node -e "
             const fs = require('fs');
             const content = fs.readFileSync('inventory-data.js', 'utf8');
-            eval(content);
+            const INVENTORY = new Function(content + '; return INVENTORY;')();
             if (!Array.isArray(INVENTORY)) throw new Error('INVENTORY not array');
-            if (INVENTORY.length !== $COUNT) throw new Error('count mismatch');
+            if (INVENTORY.length !== $COUNT) throw new Error('count mismatch: ' + INVENTORY.length + ' vs ' + $COUNT);
             console.log('Valid JS with', INVENTORY.length, 'vehicles');
           "
 
