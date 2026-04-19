@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   51 vehicles
+   50 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -892,7 +892,7 @@ const INVENTORY = [
     "year": 2021,
     "make": "GMC",
     "model": "Acadia",
-    "miles": 45583,
+    "miles": 45425,
     "price": 19990,
     "extColor": "Red",
     "intColor": "Black",
@@ -1534,46 +1534,6 @@ const INVENTORY = [
     "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202603-6617e1193c80446fae41588da299ca6f.jpg",
     "equipment": [
       "Air Conditioning OnStar CUE Infotainment Alloy Wheels F&R Head Curtain Air Bags Power Trunk Release Daytime Running Lights Power Windows Electric Power Steering ABS (4-Wheel) Navigation System Dual Air Bags Side Air Bags Dual Power Seats Tilt & Telescoping Wheel F&R Park Assist Push Button Start 4-Cyl Turbo 2.0 Liter Bluetooth Wireless Leather Power Door Locks Traction Control Keyless Entry Automatic 8-Spd Backup Camera Premium Sound Cruise Control Cold Weather Pkg Knee Air Bags Heated Seats SiriusXM Satellite StabiliTrak AWD AM/FM/HD Radio Alarm System"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "Sedan"
-  },
-  {
-    "stock": "009932RR",
-    "vin": "JHMFC1F99JX009932",
-    "year": 2018,
-    "make": "Honda",
-    "model": "Civic",
-    "miles": 87744,
-    "price": 12990,
-    "extColor": "Gray",
-    "intColor": "Black",
-    "transmission": "Automatic  CVT",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202601-04149c4d61e3461788810751eba47f78.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-cfefbcd65f92435fb7049562e0cf447e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-38bbd9e76eee48fcb74e18c465634600.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-666edaf417904fb5afc4086aa5a01672.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-4a1497fe1bfa4f6fa108aa853a438ac4.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-4cc876a63abf4069af584b4a0f60465b.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-099f9e69cb1c47bc8e4cd9a48df41c4f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-b58675b270c640799340c68b92512d96.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-d4de66f19322482d9b2df194ad90ac1a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-5d3db56781064baea1d4d7566d6d33ac.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-97cef3596d26428cad776d749e61bde8.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-b89317f264764392802b6382ae31f85e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-7ca36971547a4cd88174207da16f8521.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-2277825f22884d0d8375c483aa99ccbe.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-75b07dc7a0b5496296bb471254215464.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-75a119cd7d2e4d2081a67abf6bf09810.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-cfbde99f1a184f0db737cc3cb6dbed49.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-0f8a0fed4f1e4dd69eef1bf93fa3f58d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-92814796a2b842be9b35d7503b36cf87.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202601-97c2feb492b242998735c0045867bba6.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202601-04149c4d61e3461788810751eba47f78.jpg",
-    "equipment": [
-      "FWD Hill Start Assist Alloy Wheels CD/MP3 (Single Disc) HondaLink Power Windows Collision Warning AM/FM/HD Radio Adaptive Cruise Control Tilt & Telescoping Wheel 4-Cyl Turbo 1.5 Liter Premium Sound Traction Control Backup Camera LED Headlamps Navigation System Lane Departure Warning Fog Lights Air Conditioning Power Trunk Release Keyless Entry Honda LaneWatch Side Air Bags SiriusXM Satellite Leather Heated Seats Automatic CVT Power Steering F&R Head Curtain Air Bags Bluetooth Wireless Alarm System Dual Power Seats Rear Spoiler Power Door Locks Daytime Running Lights Moon Roof Dual Air Bags ABS (4-Wheel) Stability Control Keyless Start"
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "Sedan"
