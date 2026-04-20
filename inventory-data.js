@@ -1247,7 +1247,7 @@ const INVENTORY = [
     "equipment": [
       "F&R Head Curtain Air Bags 4WD SiriusXM Satellite Power Tailgate Release Anti-Theft System Keyless Start Keyless Entry Power Door Locks ABS (4-Wheel) StabiliTrak Cruise Control Alloy Wheels Power Windows Dual Air Bags Dual Power Seats Side Air Bags Traction Control Power Steering AM/FM/HD Radio Heated Seats V8 EcoTec3 DFM 5.3 Liter Leather Hill Start Assist LED Headlamps Fog Lights Towing Pkg Backup Camera Automatic 8-Spd w/Overdrive Tilt & Telescoping Wheel Air Conditioning Bluetooth Wireless Daytime Running Lights"
     ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "Truck"
   },
   {
