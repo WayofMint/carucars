@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   50 vehicles
+   49 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -205,48 +205,6 @@ const INVENTORY = [
     "type": "SUV"
   },
   {
-    "stock": "606806R",
-    "vin": "3MVDMBDY1RM606806",
-    "year": 2024,
-    "make": "MAZDA",
-    "model": "CX-30",
-    "miles": 36755,
-    "price": 17990,
-    "extColor": "Grey",
-    "intColor": "Black",
-    "transmission": "Automatic  6-Spd SKYACTIV-Drive Sport w/Manual Mode",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-f457832b92e24a79baab488363acc6db.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-a7e8ed8d3f1b4f3ca63cb15190b04e07.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-0d51388b5ae04f9793fdc3d667103198.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-f46176829a3f47ed8f8348814d46f27a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-d24f443a8c1540a1826f4a9d6a30b867.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-d0ab998590024bafa577bbc539b4570a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-0659732f0a634034a95c726cb6504bbe.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-ab66e7da07004aa5b118cdc655fcc826.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-3396e7d877dc4dafaf485b72fe243d97.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-cd6a0b38177a4c6689ac62c3f77c0405.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-fca1e921b7614e4c82225cc418a9e9f5.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b8db0b86da9e4908bbffbe37abb35358.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-93c9dcc805ca4c53900317c88ec2175b.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-e78ca6fa90644a72bc9086aaa3e7623c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-5edf110f04d3451da637c1c5d7671dee.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-0ead21f04ca74c8abc2b0b58f6ab5907.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-23ae50f9836d4951bf2b2629b33c260c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b2448d18a93d439c9decb685da5fbfa6.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b426dd711fc14c589022dbf2496f8080.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-fd18ee079e9140d68b8b9bcb6ce4c807.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-625449d193254f04944037c73dfe3cb3.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-911430b858124eea965412119f19a5b2.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-f457832b92e24a79baab488363acc6db.jpg",
-    "equipment": [
-      "Keyless Entry Tilt & Telescoping Wheel LED Headlamps Leather F&R Head Curtain Air Bags Power Seat Bose Surround Sound Moon Roof Power Windows 4-Cyl SKYACTIV-G Turbo 2.5 Liter Power Liftgate Release Alloy Wheels Navigation System Knee Air Bags Air Conditioning Lane Departure Warning System ABS (4-Wheel) Dual Air Bags Hill Start Assist Traction Control AM/FM/HD Radio Blind-Spot Monitor Heated Seats Dynamic Stability Control SiriusXM Satellite MAZDA CONNECT Bluetooth Wireless Automatic 6-Spd SKYACTIV-Drive Sport w/Manual Mode F&R Side Air Bags Anti-Theft System Radar Cruise Control Backup Camera Power Steering AWD Daytime Running Lights Power Door Locks Push Button Start"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "SUV"
-  },
-  {
     "stock": "216454C",
     "vin": "3N1AB8CV7RY216454",
     "year": 2024,
@@ -405,86 +363,6 @@ const INVENTORY = [
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "Sedan"
-  },
-  {
-    "stock": "167767R",
-    "vin": "KL47LAE22RB167767",
-    "year": 2024,
-    "make": "Buick",
-    "model": "Envista",
-    "miles": 37349,
-    "price": 14990,
-    "extColor": "Gray",
-    "intColor": "Black",
-    "transmission": "Automatic  6-Spd",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-a40b627dc8ae4ed3a9b7223864d4d629.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b80262d9a8ed494ca7a5103c22ed2029.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-0beacba16efc45c396b1bfd279b595b2.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-f8be0c6d0ad44f238005516fd9ff5d81.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-df2077a1223b43d39094342e5a4e59cc.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-672e21094ced4eadb393fc7c8e7a680a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-4f0d147517714153b057ec94569b0ef9.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-8645f52e826241d9aa663501fc4d1ffa.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-d8c32537dbc64703b3cc57ee9c4a113c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-50a31455eaf447bd8da6d0e3e442a625.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-88107b2f70a34d5b8eed1ae472803f9a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-73f304b00214473f913d8b981864c3dd.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-209c27763b404eb38d9bc644ee39adf3.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b023cfc6d8464f8598d1defb062a05e0.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-cfe0d0cfc19c4e2b8fce7d6539eb9d47.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-39bd5a44c2c7432ead8b47630111931a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-2cc01eab0b0f4e5cafed20056daa375c.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-a40b627dc8ae4ed3a9b7223864d4d629.jpg",
-    "equipment": [
-      "Stabilitrak F&R Head Curtain Air Bags AM/FM Stereo SiriusXM Satellite Dual Air Bags Side Air Bags FWD Cruise Control Lane Keep Assist Power Door Locks Hill Start Assist Automatic 6-Spd Power Windows Backup Camera Tilt & Telescoping Wheel Alloy Wheels Power Steering ABS (4-Wheel) Bluetooth Wireless Air Conditioning Daytime Running Lights Push Button Start 3-Cyl ECOTEC Turbo 1.2 Liter Preferred Equipment Group OnStar & Buick Connected Services LED Headlamps"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "SUV"
-  },
-  {
-    "stock": "016527R",
-    "vin": "5FNRL6H89PB016527",
-    "year": 2023,
-    "make": "Honda",
-    "model": "Odyssey",
-    "miles": 21931,
-    "price": 26990,
-    "extColor": "White",
-    "intColor": "Beige",
-    "transmission": "Automatic  10-Spd",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202510-9f8e1f02dd5d4d06aae0706266940903.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-b371107dc40849acbcf3dba4ec322ccb.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-7cfba59479b04eeb861941a202aec0d3.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-a67ad1ff522e4d7fb2b922a064038d1c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-66511812fff14f29bd91b46bb24e3ad3.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-843e95f42a3a44898015a61adde24b89.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-356e9c4a584d47f5897305947858c22d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-229d7490d1344653a126bae1f6e3d6a0.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-c0af646dee7c4de995de7e91f4442740.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-f055c90d2c89487d8b91dd9f0731c94a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-da91456aad8949d5958abbd665dc9be1.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-159e267557554e95b596999e10f69fa7.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-796a65cf75a94634a35ddae2576ceb33.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-a01cfc91531f496fa1b83cc3e956dcfd.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-b4bd95d65df1426598060ed81383857d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-6997de53ddd74854bc24857a5722e839.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-021a68e145f44903bddda028b9000003.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-ec9d957d69c94a0eadddf61df8cbd88f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-595b868d2f654b82b3f3d1975d671a46.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-8b43471fdf914bbf9ebea310f143f20a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-fd1175aaa2f147df99d073bc2a4176a9.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-e5ab05b5bb6c4d37b85d7b1d371a338d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202510-4f147221886540d7974d1736df1666af.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202510-9f8e1f02dd5d4d06aae0706266940903.jpg",
-    "equipment": [
-      "Third Row Seat Tilt & Telescoping Wheel Hill Start Assist Power Steering Multi-View Camera Keyless Entry F&R Parking Sensors Moon Roof Leather Navigation System Power Door Locks Automatic 10-Spd V6 i-VTEC 3.5 Liter Security System Roof Spoiler Lane Departure Warning System Alloy Wheels Daytime Running Lights Bluetooth Wireless 8-Passenger Seating DVD System Stability Control Push Button Start Power Windows ABS (4-Wheel) Power Tailgate Release Side Air Bags Blind-Spot Information System Traction Control Fog Lights Dual Air Bags AM/FM/HD Radio Air Conditioning Air Conditioning Rear LED Headlamps Adaptive Cruise Control Dual Power Seats SiriusXM Satellite HondaLink Collision Warning System FWD F&R Head Curtain Air Bags Knee Air Bags Power Sliding Doors Heated Seats"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "Minivan"
   },
   {
     "stock": "648574C",
@@ -1086,6 +964,91 @@ const INVENTORY = [
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "SUV"
+  },
+  {
+    "stock": "246343R",
+    "vin": "5GAERBKW5MJ246343",
+    "year": 2021,
+    "make": "Buick",
+    "model": "Enclave",
+    "miles": 70204,
+    "price": 15990,
+    "extColor": "White",
+    "intColor": "Beige",
+    "transmission": "Automatic  9-Spd",
+    "photos": [
+      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-1c937f7f3ba8483aaff644d4b097c287.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-045489c313dd484086241004c32271a8.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-58a3367f85b643e8ad02efb609e3267e.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-318ce16d8d5c42c4b3fbefb942423972.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-8c7fd15609834411ad3ce83015b267bf.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-23f4a413f2cb4184bbebd80a040761e0.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-9dd1a13b7cb540b6a98fa6deae54ec1b.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-4dba0bb6bb8d4f60addbded1b8941e2f.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-f79e75b12de542d299f8815a64b62d54.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-ae53cc5b1636420c88e1cb567f485681.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-9cdd6bda923748d1a876594eed1d9a86.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-4bfbf71781f54124a2fe501d3e8bf9dc.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-8e3c1ed1ef744c7e8f35f59967b31060.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-3e832b510cf547d49cabbac4b2f30343.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-946a178b462b4695bb9c725506c20afe.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-e24f2359b7b74a4089e9d94e106a81a9.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-4ccc3f6d56bb470b83d172255e6d5096.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-7287f345fef44708a3ba1f25c9a99c41.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-d673cbb94c204f1da5d828a7ce4289b5.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-c747c4b47b65422e9a56d4771694b790.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-89a7661ac8b4424b92eaed5df5892838.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-d52d0d888ddf4a3cada2cda865db7011.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-dc7f8d52bbfa4345b7b768c843f814c3.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-0d2f5fdcebdd4072ab3ed7902291fbc7.jpg"
+    ],
+    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-1c937f7f3ba8483aaff644d4b097c287.jpg",
+    "equipment": [
+      "Bluetooth Wireless V6 3.6 Liter SiriusXM Satellite Dual Power Seats Buick Connected Power Steering Side Air Bags Quad Seating (4 Buckets) F&R Head Curtain Air Bags FWD Cruise Control Air Conditioning Rear Rear Spoiler LED Headlamps Keyless Start Rear Park Assist StabiliTrak Blind Zone Alert AM/FM Stereo Tilt & Telescoping Wheel Power Door Locks Keyless Entry Heated Seats Air Conditioning Traction Control Dual Air Bags Leather Alloy Wheels ABS (4-Wheel) Alarm System Automatic 9-Spd Power Liftgate Release Daytime Running Lights Third Row Seat Backup Camera Power Windows"
+    ],
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "type": "SUV"
+  },
+  {
+    "stock": "301457R",
+    "vin": "1N4BL4CV7MN301457",
+    "year": 2021,
+    "make": "Nissan",
+    "model": "Altima",
+    "miles": 32873,
+    "price": 14990,
+    "extColor": "Gray",
+    "intColor": "Black",
+    "transmission": "Automatic  Xtronic CVT",
+    "photos": [
+      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-ffe5336262dd482b84944ba48ccc7051.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-48e08e23b4d74b69adf38778bfbcec9c.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-6e2b7cb957b0436cb56c280ae0d5ca0e.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-96aa623d08fb4ce1aa38d9d79f6a5887.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-c4ff1c3738604d109dbfd8e33a741008.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-efc502f2bf0e4dcea1c111de54faec7f.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-37bc20e0964a48158b248761202afab8.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-8e5eb04feb7b4979acb4f07de14ae3e6.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-fe53de2fc9cd4215ab8aa9b69f3e36f7.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-48071b76965c4f98bffca110f6a047e1.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-e9f9af9485bd46f1bfe9b015142a3678.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-c408738f1485476f8c8fc89347bdf626.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-97a84eadae84414abc35f9edad766301.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-99c530c7c2a94ed0a26607a118319e04.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-6961b53ac0604e8fa1ba8d5408c2f2ab.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-1f12a6bb975a48d89fc519e6d1221087.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-d405812f66ee4bd9928adb73dfc9b93a.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-7ae28ce3df204365b5efa351cf5a2a25.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-643616cb94d741a7942fc40d5d7333e3.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-ed3101c9d0db41eab72d8f934fe3d7ef.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-221097f3bb2b4ad892a7744aed7ca1ef.jpg"
+    ],
+    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-ffe5336262dd482b84944ba48ccc7051.jpg",
+    "equipment": [
+      "Tilt & Telescoping Wheel CD/MP3 (Single Disc) F&R Side Air Bags Keyless Entry Automatic Xtronic CVT Power Steering Power Windows FWD Air Conditioning Alarm System Knee Air Bags Blind-Spot Warning System Daytime Running Lights 4-Cyl 2.5 Liter SiriusXM Satellite Power Door Locks Rear Spoiler AM/FM Stereo Cruise Control F&R Head Curtain Air Bags Bluetooth Wireless Rear Sonar System Lane Departure Warning System Push Button Start Traction Control Vehicle Dynamic Control Alloy Wheels LED Headlamps Hill Start Assist ABS (4-Wheel) Backup Camera Dual Air Bags Power Seat"
+    ],
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "type": "Sedan"
   },
   {
     "stock": "022082C",
