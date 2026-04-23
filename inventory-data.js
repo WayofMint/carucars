@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   49 vehicles
+   48 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -1292,53 +1292,6 @@ const INVENTORY = [
     "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202603-898262c6fb1a43f6beb27a8f48ff0b16.jpg",
     "equipment": [
       "Stability Control Power Door Locks Air Conditioning Backup Camera FWD Tilt & Telescoping Wheel Fog Lights MyLincoln SiriusXM Satellite Daytime Running Lights SYNC Lincoln Connect CD/MP3 (Single Disc) Push Button Start Parking Sensors Power Liftgate Release Hill Start Assist Control Leather Side Air Bags Cruise Control Dual Air Bags LED Headlamps Automatic 6-Spd w/SelectShift AM/FM Stereo Keyless Entry Knee Air Bags Dual Power Seats Power Windows Traction Control Heated Seats F&R Head Curtain Air Bags Rear Spoiler 4-Cyl Turbo EcoBoost 2.0 Liter ABS (4-Wheel) Alarm System Electric Power Steering Alloy Wheels"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "SUV"
-  },
-  {
-    "stock": "556198RB",
-    "vin": "5N1DL0MM4KC556198",
-    "year": 2019,
-    "make": "INFINITI",
-    "model": "QX60",
-    "miles": 71461,
-    "price": 11990,
-    "extColor": "Blue",
-    "intColor": "Black",
-    "transmission": "Automatic  CVT w/Manual Mode",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202507-303be8966a3e40a18c77efd576a7b0ef.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-c6652eda56b74513956541db36df51da.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-b8fb676a5d9e4c41be29e64210f6aea7.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-a9d78e36072f48f098451d3d62d32227.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-221944666252417ab73ee5abfe62e4c2.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-4e8f7ddd283e4c1f9ef213f147717771.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-5b5add3d5d9a4d19b060045deb70f2f6.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-6efc94aa158a4c3cae672353fcbd8807.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-d4c037b95d5f4ac69eb9ad4c4f9acc9e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-cd71322f407e4d1291eefac002de4e7d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-957a9d494dae4298b73c47d91a6f9790.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-4e2eba492a504ace88a5b49c57d3020d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-2e6c589e02194da989fbecaa6b1bddf3.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-9f36543bef5b4e93929db2757e928bc0.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-a7de66b28c4e4adc8342d688e2991850.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-f60b8aba3b9d497fb79264a12fbfd07f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-192503d891ed4e12b1639e3b0068e47c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-66f5f881ea71410185d45cc8d5f7e531.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-fb6bae8e8a734a08878f292ca7d96119.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-98886a8ecaff4275ada35fb389c73dec.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-351d878cd33f43c1b2be62a605717750.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-52c5a7f470ce46818b7bfbb0cf1bd4d8.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-a731461f89ac4c7299afe72e2a10c1b3.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-384f7a6c689242b291842b5f9247aa56.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-ae03744659e24ec2b6106e80b2806181.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-69d0b1100a4c4789b953b9538c183a51.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202507-ef587c36ce4546309a672de913c53eac.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202507-303be8966a3e40a18c77efd576a7b0ef.jpg",
-    "equipment": [
-      "Air Conditioning Bi-HID Headlamps Tilt & Telescoping Wheel Power Liftgate Release Backup Camera F&R Head Curtain Air Bags Daytime Running Lights Heated Seats Side Air Bags Fog Lights AWD V6 3.5 Liter Vehicle Dynamic Control AM/FM Stereo Bluetooth Wireless Hill Start Assist Push Button Start Automatic CVT w/Manual Mode Dual Power Seats Keyless Entry Air Conditioning Rear Traction Control Rear Spoiler Cruise Control CD/MP3 (Single Disc) Moon Roof Blind-Spot Warning ABS (4-Wheel) Power Windows Roof Rails Power Door Locks Dual Air Bags Bose Premium Sound SiriusXM Satellite Alloy Wheels Alarm System"
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "SUV"
