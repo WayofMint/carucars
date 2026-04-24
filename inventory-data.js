@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   48 vehicles
+   49 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -1174,6 +1174,45 @@ const INVENTORY = [
     "type": "Sedan"
   },
   {
+    "stock": "122723RRR",
+    "vin": "1G1ZG5STXLF122723",
+    "year": 2020,
+    "make": "Chevrolet",
+    "model": "Malibu",
+    "miles": 38674,
+    "price": 9990,
+    "extColor": "Black",
+    "intColor": "Black",
+    "transmission": "Automatic  CVT",
+    "photos": [
+      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-93a9001f58d34378a2bc046d10b3ba54.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-8a5b2425a2384fb39a1e773c30821573.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-22223032127f467eae164b8894864a8e.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-d530c425217f43ccaf723cf59e924b5c.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-c7f3fd4264cd4ddda23133ed7724a05b.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-67892a6f5a3948b39161f4e91ab55973.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-ede492171cfa40f39428beaad5825682.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-8d40b8672cae41609df394c00d91b2f4.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-700e85546a42475998032712fc2fbf5a.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-f0e8034859df4d5f82fc857b5422d937.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-c1943aa067f242d2928b8e37f15b8da8.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-1fedad8a3b5f4795be54374b82e7001b.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-b7b87a9075bd46eaa346574df4895e9e.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-7625996bb9dc4daa8ad97c668895f7d4.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-a4742e92bfbc43138d3c07e21a74a92c.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-e0d2783fb1f543a3b501ca78e81e7c69.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-e374dc5fb1d34f4ebf10fd674671e022.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-1c0e911413d5419d81ecd4ace00fd091.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202604-d714c416dc2e456688fbec4e6c7837df.jpg"
+    ],
+    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-93a9001f58d34378a2bc046d10b3ba54.jpg",
+    "equipment": [
+      "ABS (4-Wheel) Alloy Wheels Keyless Start OnStar Tilt & Telescoping Wheel AM/FM Stereo Power Door Locks Daytime Running Lights FWD Rear Spoiler StabiliTrak Power Windows Traction Control Power Trunk Release Keyless Entry Air Conditioning 4-Cyl Turbo 1.5 Liter Automatic CVT Dual Air Bags Backup Camera Cruise Control Power Seat Side Air Bags Bluetooth Wireless Power Steering Alarm System Knee Air Bags F&R Head Curtain Air Bags"
+    ],
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "type": "Sedan"
+  },
+  {
     "stock": "334203R",
     "vin": "1GTU9DED4KZ334203",
     "year": 2019,
@@ -1843,7 +1882,7 @@ const INVENTORY = [
     "price": 8990,
     "extColor": "",
     "intColor": "",
-    "transmission": "Automatic",
+    "transmission": "Manual  5-Spd",
     "photos": [
       "https://imagesdl.dealercenter.net/1024/768/202604-195690f2986649f4b3a011e848636c5f.jpg",
       "https://imagesdl.dealercenter.net/1024/768/202604-66e0b1ff002845599a6b9a475655721a.jpg",
@@ -1861,7 +1900,7 @@ const INVENTORY = [
     ],
     "img": "https://imagesdl.dealercenter.net/1024/768/202604-195690f2986649f4b3a011e848636c5f.jpg",
     "equipment": [
-      "ABS (4-Wheel) Power Windows Power Steering Power Door Locks Cruise Control 4WD Cassette Oversized Premium Wheels 20+ Tilt Wheel Automatic AM/FM Stereo V8 5.0 Liter Air Conditioning"
+      "ABS (4-Wheel) Power Windows Power Steering Power Door Locks Cruise Control 4WD Cassette Oversized Premium Wheels 20+ Tilt Wheel Automatic AM/FM Stereo V8 5.0 Liter Air Conditioning Manual 5-Spd"
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "SUV"
