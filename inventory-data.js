@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   49 vehicles
+   50 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -1870,6 +1870,25 @@ const INVENTORY = [
       "Dual Air Bags Alloy Wheels Traction Control Tilt Wheel Power Steering OnStar Automatic Power Windows Air Conditioning Towing Pkg ABS (4-Wheel) Roof Rack 4WD CD/MP3 (Single Disc) StabiliTrak AM/FM Stereo Cruise Control Power Door Locks 5-Cyl 3.7 Liter Off-Road Suspension"
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "type": "SUV"
+  },
+  {
+    "stock": "900103C",
+    "vin": "WUARL48H56K900103",
+    "year": 2006,
+    "make": "Audi",
+    "model": "S4",
+    "miles": 106575,
+    "price": 7990,
+    "extColor": "",
+    "intColor": "",
+    "transmission": "Automatic w/Tiptronic",
+    "photos": [],
+    "img": "",
+    "equipment": [
+      "Dual Power Seats Cassette Stability Control Power Steering Air Conditioning V8 4.2 Liter Cruise Control AM/FM Stereo Side Air Bags Power Windows Dual Air Bags ABS (4-Wheel) Quattro AWD Power Door Locks CD/MP3 (Multi Disc) Leather Telescoping Wheel Automatic w/Tiptronic Alloy Wheels"
+    ],
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "SUV"
   },
   {
