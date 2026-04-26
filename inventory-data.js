@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   50 vehicles
+   48 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -682,47 +682,6 @@ const INVENTORY = [
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "Truck"
-  },
-  {
-    "stock": "207402R",
-    "vin": "3GNAXHEV9NS207402",
-    "year": 2022,
-    "make": "Chevrolet",
-    "model": "Equinox",
-    "miles": 25877,
-    "price": 14990,
-    "extColor": "Blue",
-    "intColor": "Black",
-    "transmission": "Automatic  6-Spd w/Overdrive",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202602-16785a4935bf4cef8a6f9314936b95e8.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-a963b7f1dcbc4ef9a1c9537e9ddb8b84.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-4b3198aabdf0481ba126b6aee0e83e1d.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-dedbcb0efa784842bedd0916e9a3eb83.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-38d714290d354ff4a215c519d78385b8.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-5fedbaf8079b4b638475cf4876d12232.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-254209064ab5489ca973223a0ef71a2e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-04d0ef793f4745cb8c1e910c9e56cf15.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-bc839677f12b45d69dcbef785dbcf54e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-581c535aab5c49a69b92da74c0e804c6.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-407903b2d63d4d5fa514648bfb702f54.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-8ed4870c2f7b477f99c2eb642c7f53e8.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-85a7188e7e1646f9ab57e7c62948321c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-8897894174224ba19a1454f5fcba5eeb.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-50fb01829ca64d579cd01dda18b8401a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-5164dba9e1084091adce19b6ff3d35b0.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-24b87bf630924ce39f790ca86b100796.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-48d960ee82114bcea2e8cc5208d074fe.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-117903d1aeed40f7994f33fad74aa808.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-64fc4aa1d2634cc68d74e58e99f63e31.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202602-c423c164cb1349cfb3e7cc20efd87332.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202602-16785a4935bf4cef8a6f9314936b95e8.jpg",
-    "equipment": [
-      "Automatic 6-Spd w/Overdrive 4-Cyl Turbo 1.5 Liter Collision Warning LED Headlamps OnStar Alloy Wheels Tilt & Telescoping Wheel Push Button Start Lane Keep Assist Chevrolet Connected ABS (4-Wheel) StabiliTrak Power Steering Dual Air Bags FWD Power Door Locks Electronic Cruise Control Side Air Bags Theft Deterrent System Chevrolet 3 Infotainment System AM/FM Stereo Air Conditioning Traction Control SiriusXM Satellite Backup Camera Power Windows Bluetooth Wireless F&R Head Curtain Air Bags Keyless Entry"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "SUV"
   },
   {
     "stock": "009224C",
@@ -1756,45 +1715,6 @@ const INVENTORY = [
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "Sedan"
-  },
-  {
-    "stock": "028712CCC",
-    "vin": "WA1LFAFP4FA028712",
-    "year": 2015,
-    "make": "Audi",
-    "model": "Q5",
-    "miles": 79396,
-    "price": 9990,
-    "extColor": "Gray",
-    "intColor": "Black",
-    "transmission": "Auto  8-Spd Tiptronic",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-e9ca708631554831b5937ab035cd3113.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-3a7b93af21d746ecb548197e2bfa08cd.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-f73cba626780467280b302fca0388a07.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-a9f6ff37697e4400bd79653ccf1def5e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-51a670898fdd4e158e97ddb7778e935a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-51b0383061244c3d99f1db2c747f871e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-31cc6d29b72b48b6ae80dbddfe3b61c8.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-baf4d7e0fde446bbad7de35e52a9625a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-467605061cd64471b9a8a6dee3623b62.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-0f1b3bfcc7c84fe9b561a36bd2711645.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b684e5484684496a988c228c4240bfbb.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-9c8354cbc8834f9e9fac36f1f16466ca.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-ca6fc7f9477c442590e9e446840e0179.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-23bcd40bb8e94e2a95763679e1bb4576.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-0d92cfad7b924ed6800fec5cdc617bb4.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-3dc7db49999c41318932122b0981f905.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-453b5e4775a542de8d43e17783901fdb.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-b6fa57511c5c43018618d21ba78d74c0.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-c5cd68aa8c0e4561b33f091b958deba3.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-e9ca708631554831b5937ab035cd3113.jpg",
-    "equipment": [
-      "Heated Seats Parking System Plus Navigation System Stability Control Air Conditioning Cruise Control Technology Pkg Panorama Sun Roof Fog Lights SiriusXM Satellite AM/FM Stereo AWD F&R Parking Sensors Anti-Theft System Keyless Start Power Steering Audi connect Power Door Locks Keyless Entry Dual Air Bags Power Liftgate Release Daytime Running Lights Traction Control Head Curtain Air Bags Tilt Wheel Backup Camera Side Air Bags Power Windows Blind-Spot Alert Alloy Wheels Dual Power Seats ABS (4-Wheel) Leather Hill Descent Control Auto 8-Spd Tiptronic Bluetooth Wireless Air Conditioning Rear CD/MP3 (Single Disc) HID Headlamps 4-Cyl Turbo 2.0 Liter"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "SUV"
   },
   {
     "stock": "261904C",
