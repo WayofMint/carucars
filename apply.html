@@ -718,6 +718,14 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.assign({key: 'carucars-crm-2026', source: 'Finance Application'}, d))
             }).catch(function(){});
+
+            // SMS fan-out — full applicant info (interim until URL whitelist clears
+            // and we can switch back to a short PDF link)
+            fetch('/.netlify/functions/sms-alert', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.assign({key: 'carucars-sms-2026', source: 'Finance Application'}, d))
+            }).catch(function(){});
         }
     })
     .catch(function() {
