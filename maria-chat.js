@@ -150,19 +150,27 @@
                 document.getElementById('leadThankYou').style.display = 'flex';
                 setTimeout(function() { closeLeadPopup(); }, 3000);
 
+                var leadPayload = {
+                    source: 'Maria Chat',
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    zip: zip,
+                    message: message
+                };
+
                 // Send ADF lead to DealerCenter CRM
                 fetch('https://yellowgreen-emu-225498.hostingersite.com/lead-to-crm.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        key: 'carucars-crm-2026',
-                        source: 'Maria Chat',
-                        name: name,
-                        phone: phone,
-                        email: email,
-                        zip: zip,
-                        message: message
-                    })
+                    body: JSON.stringify(Object.assign({key: 'carucars-crm-2026'}, leadPayload))
+                }).catch(function(){});
+
+                // SMS fan-out to staff
+                fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-notify.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(Object.assign({key: 'carucars-sms-2026'}, leadPayload))
                 }).catch(function(){});
             })
             .catch(function() {

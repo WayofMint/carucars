@@ -1,0 +1,13 @@
+# Block directory listing — PDFs are accessible only via direct token URL
+Options -Indexes
+
+# Force PDFs to download with sensible content type
+<FilesMatch "\.pdf$">
+    Header set Content-Type "application/pdf"
+    Header set X-Robots-Tag "noindex, nofollow"
+</FilesMatch>
+
+# Block any non-PDF file from being served from this folder
+<FilesMatch "\.(php|html|txt|log|csv)$">
+    Require all denied
+</FilesMatch>

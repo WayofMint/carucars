@@ -153,6 +153,16 @@ $pdf->Cell(0, 4, 'CARUCARS LLC | Buy Here Pay Here | 9600 NW 7th Ave, Miami FL 3
 $pdfContent = $pdf->Output('S');
 $pdfFilename = 'CreditApp_' . preg_replace('/[^a-zA-Z0-9]/', '', $name) . '_' . date('Ymd') . '.pdf';
 
+// Save PDF to /applications/{token}.pdf for SMS link delivery
+$applicationsDir = __DIR__ . '/applications';
+if (!is_dir($applicationsDir)) {
+    @mkdir($applicationsDir, 0755, true);
+}
+$token = bin2hex(random_bytes(16));
+$tokenPath = $applicationsDir . '/' . $token . '.pdf';
+@file_put_contents($tokenPath, $pdfContent);
+$pdfUrl = 'https://yellowgreen-emu-225498.hostingersite.com/applications/' . $token . '.pdf';
+
 // Email with PDF attachment
 $to = 'salecarucars@gmail.com';
 $subject = 'Credit Application - ' . $name;
@@ -184,9 +194,31 @@ $body .= "--{$boundary}--";
 $sent = @mail($to, $subject, $body, $headers);
 
 file_put_contents(__DIR__ . '/sync-log.txt',
-    '[' . date('Y-m-d H:i:s') . "] PDF for {$name}: " . ($sent ? 'SENT' : 'FAILED') . " ({$pdfFilename})\n",
+    '[' . date('Y-m-d H:i:s') . "] PDF for {$name}: " . ($sent ? 'SENT' : 'FAILED') . " ({$pdfFilename}) token={$token}\n",
     FILE_APPEND | LOCK_EX
 );
 
+// Fire SMS fan-out with the PDF link
+$smsPayload = json_encode([
+    'key'              => 'carucars-sms-2026',
+    'source'           => 'Finance Application',
+    'first_name'       => $d['first_name'] ?? '',
+    'last_name'        => $d['last_name'] ?? '',
+    'phone'            => $d['phone'] ?? '',
+    'vehicle_interest' => $d['vehicle_interest'] ?? '',
+    'down_payment'     => $d['down_payment'] ?? '',
+    'pdf_url'          => $pdfUrl,
+]);
+$ch = curl_init('https://yellowgreen-emu-225498.hostingersite.com/sms-notify.php');
+curl_setopt_array($ch, [
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $smsPayload,
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT        => 15,
+]);
+@curl_exec($ch);
+curl_close($ch);
+
 header('Content-Type: application/json');
-echo json_encode(['success' => $sent, 'pdf' => $pdfFilename]);
+echo json_encode(['success' => $sent, 'pdf' => $pdfFilename, 'pdf_url' => $pdfUrl]);

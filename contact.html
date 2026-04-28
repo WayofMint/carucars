@@ -323,21 +323,29 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         if (resp.success) {
             form.innerHTML = '<div style="text-align:center;padding:40px 0;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg><h3 style="margin:16px 0 8px;">Message Sent!</h3><p style="color:#666;">We\'ll get back to you shortly.</p></div>';
 
+            var leadPayload = {
+                source: 'Contact Form',
+                first_name: fd.get('firstName') || '',
+                last_name: fd.get('lastName') || '',
+                phone: fd.get('phone') || '',
+                email: fd.get('email') || '',
+                zip: fd.get('zipcode') || '',
+                message: fd.get('message') || '',
+                vehicle_interest: fd.get('interest') || ''
+            };
+
             // Send to DealerCenter CRM
             fetch('https://yellowgreen-emu-225498.hostingersite.com/lead-to-crm.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    key: 'carucars-crm-2026',
-                    source: 'Contact Form',
-                    first_name: fd.get('firstName') || '',
-                    last_name: fd.get('lastName') || '',
-                    phone: fd.get('phone') || '',
-                    email: fd.get('email') || '',
-                    zip: fd.get('zipcode') || '',
-                    message: fd.get('message') || '',
-                    vehicle_interest: fd.get('interest') || ''
-                })
+                body: JSON.stringify(Object.assign({key: 'carucars-crm-2026'}, leadPayload))
+            }).catch(function(){});
+
+            // SMS fan-out to staff
+            fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-notify.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.assign({key: 'carucars-sms-2026'}, leadPayload))
             }).catch(function(){});
         }
     })
