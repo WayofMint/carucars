@@ -7,7 +7,8 @@ const AUTH_KEY = 'carucars-sms-2026';
 
 const RECIPIENTS = [
   { name: 'Osvaldo Rodriguez', phone: '+13059654109' },
-  { name: 'Armani',            phone: '+13059727159' },
+  { name: 'CaruCars Sales 1',  phone: '+13056090055' },
+  { name: 'CaruCars Sales 2',  phone: '+17868970167' },
 ];
 
 const cors = {
