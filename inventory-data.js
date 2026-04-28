@@ -1,7 +1,7 @@
 /* ============================================
    CARU CARS — Inventory Data
    Auto-generated from DealerCenter feed
-   48 vehicles
+   49 vehicles
    ============================================ */
 
 const INVENTORY = [
@@ -682,6 +682,47 @@ const INVENTORY = [
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "Truck"
+  },
+  {
+    "stock": "207402R",
+    "vin": "3GNAXHEV9NS207402",
+    "year": 2022,
+    "make": "Chevrolet",
+    "model": "Equinox",
+    "miles": 25877,
+    "price": 14990,
+    "extColor": "Blue",
+    "intColor": "Black",
+    "transmission": "Automatic  6-Spd w/Overdrive",
+    "photos": [
+      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202602-16785a4935bf4cef8a6f9314936b95e8.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-a963b7f1dcbc4ef9a1c9537e9ddb8b84.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-4b3198aabdf0481ba126b6aee0e83e1d.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-dedbcb0efa784842bedd0916e9a3eb83.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-38d714290d354ff4a215c519d78385b8.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-5fedbaf8079b4b638475cf4876d12232.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-254209064ab5489ca973223a0ef71a2e.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-04d0ef793f4745cb8c1e910c9e56cf15.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-bc839677f12b45d69dcbef785dbcf54e.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-581c535aab5c49a69b92da74c0e804c6.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-407903b2d63d4d5fa514648bfb702f54.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-8ed4870c2f7b477f99c2eb642c7f53e8.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-85a7188e7e1646f9ab57e7c62948321c.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-8897894174224ba19a1454f5fcba5eeb.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-50fb01829ca64d579cd01dda18b8401a.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-5164dba9e1084091adce19b6ff3d35b0.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-24b87bf630924ce39f790ca86b100796.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-48d960ee82114bcea2e8cc5208d074fe.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-117903d1aeed40f7994f33fad74aa808.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-64fc4aa1d2634cc68d74e58e99f63e31.jpg",
+      "https://imagesdl.dealercenter.net/1024/768/202602-c423c164cb1349cfb3e7cc20efd87332.jpg"
+    ],
+    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202602-16785a4935bf4cef8a6f9314936b95e8.jpg",
+    "equipment": [
+      "Automatic 6-Spd w/Overdrive 4-Cyl Turbo 1.5 Liter Collision Warning LED Headlamps OnStar Alloy Wheels Tilt & Telescoping Wheel Push Button Start Lane Keep Assist Chevrolet Connected ABS (4-Wheel) StabiliTrak Power Steering Dual Air Bags FWD Power Door Locks Electronic Cruise Control Side Air Bags Theft Deterrent System Chevrolet 3 Infotainment System AM/FM Stereo Air Conditioning Traction Control SiriusXM Satellite Backup Camera Power Windows Bluetooth Wireless F&R Head Curtain Air Bags Keyless Entry"
+    ],
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "type": "SUV"
   },
   {
     "stock": "009224C",
