@@ -14,6 +14,10 @@
   publish = "."
   command = "find . -maxdepth 1 -name '*.php' -type f -delete && echo 'PHP stripped from Netlify publish'"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "/*.php"
   to = "https://yellowgreen-emu-225498.hostingersite.com/:splat"

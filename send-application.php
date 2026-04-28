@@ -209,7 +209,7 @@ $smsPayload = json_encode([
     'down_payment'     => $d['down_payment'] ?? '',
     'pdf_url'          => $pdfUrl,
 ]);
-$ch = curl_init('https://yellowgreen-emu-225498.hostingersite.com/sms-alert.php');
+$ch = curl_init('https://carucars.com/.netlify/functions/sms-alert');
 curl_setopt_array($ch, [
     CURLOPT_POST           => true,
     CURLOPT_POSTFIELDS     => $smsPayload,

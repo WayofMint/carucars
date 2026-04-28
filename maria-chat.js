@@ -167,7 +167,7 @@
                 }).catch(function(){});
 
                 // SMS fan-out to staff
-                fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-alert.php', {
+                fetch('/.netlify/functions/sms-alert', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(Object.assign({key: 'carucars-sms-2026'}, leadPayload))
