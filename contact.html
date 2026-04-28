@@ -342,7 +342,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
             }).catch(function(){});
 
             // SMS fan-out to staff
-            fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-notify.php', {
+            fetch('https://yellowgreen-emu-225498.hostingersite.com/sms-alert.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.assign({key: 'carucars-sms-2026'}, leadPayload))
