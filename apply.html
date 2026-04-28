@@ -706,7 +706,7 @@ document.getElementById('financeApp').addEventListener('submit', function(e) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             // PDF application + email with attachment
-            fetch('https://yellowgreen-emu-225498.hostingersite.com/send-application.php', {
+            fetch('https://yellowgreen-emu-225498.hostingersite.com/send-app.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.assign({key: 'carucars-app-2026'}, d))
