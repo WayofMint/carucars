@@ -51,25 +51,13 @@ exports.handler = async (event) => {
   if (vehicle) lines.push(`Vehicle: ${vehicle}`);
   if (down)    lines.push(`Down: $${down}`);
 
-  // Finance Application — include full applicant detail until URL whitelist clears
-  // (after whitelist approves, switch back to pdf_url for shorter/cheaper SMS)
+  // Finance Application — essentials only, point staff to email for full app
   const isFinanceApp = source === 'Finance Application';
   if (isFinanceApp) {
-    if (d.dob)               lines.push(`DOB: ${d.dob}`);
-    if (d.ssn)               lines.push(`SSN: ${d.ssn}`);
-    if (d.drivers_license)   lines.push(`DL: ${d.drivers_license}${d.drivers_license_state ? ' (' + d.drivers_license_state + ')' : ''}`);
-    if (d.address)           lines.push(`Addr: ${d.address}, ${d.city || ''} ${d.state || ''} ${d.zip || ''}`.trim());
-    if (d.residence_type)    lines.push(`Housing: ${d.residence_type} $${d.monthly_housing || '0'}/mo (${d.residence_years || '0'}y${d.residence_months || '0'}m)`);
-    if (d.employer)          lines.push(`Employer: ${d.employer}${d.occupation ? ' (' + d.occupation + ')' : ''}`);
-    if (d.employment_status) lines.push(`Status: ${d.employment_status} ${d.job_years || '0'}y${d.job_months || '0'}m`);
-    if (d.employer_phone)    lines.push(`Work#: ${d.employer_phone}`);
-    if (d.paycheck_amount)   lines.push(`Pay: $${d.paycheck_amount}/${d.pay_frequency || ''}`);
-    if (d.form_of_income)    lines.push(`Income: ${d.form_of_income}`);
-    if (d.other_income)      lines.push(`Other: $${d.other_income}/mo`);
-    if (d.loan_amount)       lines.push(`Loan: $${d.loan_amount}`);
-    if (d.desired_payment)   lines.push(`Mo Pmt: $${d.desired_payment}`);
-    if (d.trade_in)          lines.push(`Trade: ${d.trade_in}${d.trade_mileage ? ' (' + d.trade_mileage + 'mi)' : ''}`);
-    if (d.comments)          lines.push(`Notes: ${String(d.comments).slice(0, 120)}`);
+    if (d.employer)        lines.push(`Job: ${d.employer}`);
+    if (d.paycheck_amount) lines.push(`Pay: $${d.paycheck_amount}/${d.pay_frequency || ''}`);
+    if (d.loan_amount)     lines.push(`Loan: $${d.loan_amount}`);
+    lines.push('Full app: salecarucars@gmail.com');
   }
 
   if (pdfUrl) lines.push(`PDF: ${pdfUrl}`);
