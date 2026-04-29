@@ -324,6 +324,25 @@ const INVENTORY = [
     "type": "Sedan"
   },
   {
+    "stock": "154239C",
+    "vin": "5YFB4MDE6RP154239",
+    "year": 2024,
+    "make": "Toyota",
+    "model": "Corolla",
+    "miles": 49156,
+    "price": 16990,
+    "extColor": "Blue",
+    "intColor": "",
+    "transmission": "Automatic  CVT w/Dynamic Shift",
+    "photos": [],
+    "img": "",
+    "equipment": [
+      "Remote Trunk Release Hill Start Assist Control FWD Tilt & Telescoping Wheel Power Door Locks Dual Air Bags LED Headlamps Stability Control Lane Departure Alert Bluetooth Wireless Backup Camera Keyless Entry AM/FM/HD Radio 4-Cyl Dynamic-Force 2.0 Liter F&R Head Curtain Air Bags Daytime Running Lights Automatic CVT w/Dynamic Shift Power Steering F&R Side Air Bags Safety Connect Vehicle Dynamic Control ABS (4-Wheel) Steel Wheels Dynamic Cruise Control SiriusXM Satellite Knee Air Bags Power Windows Air Conditioning Traction Control"
+    ],
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "type": "Sedan"
+  },
+  {
     "stock": "151403C",
     "vin": "1G1ZD5ST3RF151403",
     "year": 2024,
@@ -721,7 +740,7 @@ const INVENTORY = [
     "equipment": [
       "Automatic 6-Spd w/Overdrive 4-Cyl Turbo 1.5 Liter Collision Warning LED Headlamps OnStar Alloy Wheels Tilt & Telescoping Wheel Push Button Start Lane Keep Assist Chevrolet Connected ABS (4-Wheel) StabiliTrak Power Steering Dual Air Bags FWD Power Door Locks Electronic Cruise Control Side Air Bags Theft Deterrent System Chevrolet 3 Infotainment System AM/FM Stereo Air Conditioning Traction Control SiriusXM Satellite Backup Camera Power Windows Bluetooth Wireless F&R Head Curtain Air Bags Keyless Entry"
     ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more! Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
+    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "SUV"
   },
   {
@@ -800,47 +819,6 @@ const INVENTORY = [
     "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202506-b7a051b43d184a96821dd4d2c794b230.jpg",
     "equipment": [
       "Leather Keyless Entry Fog Lights Side Air Bags Power Steering Cruise Control Blind Zone Alert SiriusXM Satellite Daytime Running Lights Air Conditioning Premium GMC Infotainment System Luxury Pkg Dual SkyScape Sun Roof F&R Park Assist Bluetooth Wireless Driver Convenience Pkg Knee Air Bags Dual Power Seats Head-Up Display Lane Keep Assist ABS (4-Wheel) Automatic 9-Spd Air Conditioning Rear Power Door Locks Heated & Ventilated Seats Keyless Start Third Row Seat LED Headlamps Oversized Premium Wheels 20+ Dual Air Bags AM/FM/HD Radio Power Windows Backup Camera Traction Control Tilt & Telescoping Wheel F&R Head Curtain Air Bags Power Liftgate Release Navigation System OnStar V6 3.6 Liter StabiliTrak AWD"
-    ],
-    "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
-    "type": "SUV"
-  },
-  {
-    "stock": "567208R",
-    "vin": "1C4RJFAG8MC567208",
-    "year": 2021,
-    "make": "Jeep",
-    "model": "Grand Cherokee",
-    "miles": 33666,
-    "price": 18990,
-    "extColor": "Black",
-    "intColor": "Black",
-    "transmission": "Automatic  8-Spd",
-    "photos": [
-      "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-31efca416c664d7ca6c514350ba8623a.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-fabea8f084e44550aa40a41db83ba83f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-5923a2998c124d028928bb352b4c274e.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-f306c2ceed5443b885f0c508f10f0e47.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-1c782c1dec55409e96506b2ef6bee62f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-a0e0eddac0834247bce41a898753b1bd.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-9260b3b4b28540d09eaaf4ab980c6b15.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-af7eb0809a174a4f8a50609284bf953f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-78a9f6628d134d90a78075a045666365.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-4df1b291c0f742fbbdfc49da092fa26b.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-edcab9691af34df6ba795ef4ec279aff.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-bd5bff6d6ee841b2b39cf488bb74422c.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-864ba2c414b14ffda7f3f68fff773f70.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-007d8e68f0234986aa8939ff6c58e087.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-f920e62fb8d84fe1b82acba7dfa66ebe.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-5851d97131c54038b8013aae0d242178.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-18d8c9ed99514193a3b0a0b80c8610b0.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-9bc35ec9cce34512a50df9dfdf25a9bd.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-e308badf3ade4ae58bbd3b294896b67f.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-c02b044a5cc0403d9d622ca0b8e2d970.jpg",
-      "https://imagesdl.dealercenter.net/1024/768/202604-27441cdc3127416bb86bec294b5e34c7.jpg"
-    ],
-    "img": "https://imagesdl.dealercenter.net/1024/768/202210-d0cf25effdf54c229736251b9087ffa4/202604-31efca416c664d7ca6c514350ba8623a.jpg",
-    "equipment": [
-      "4WD Hill Start Assist Control Side Air Bags Power Door Locks F&R Head Curtain Air Bags Heated Seats Traction Control Keyless Start Electronic Stability Control Power Windows Power Seat Bluetooth Wireless Alarm System Rear Spoiler Alloy Wheels ABS (4-Wheel) Cruise Control V6 VVT 3.6 Liter Dual Air Bags Fog Lights AM/FM/HD Radio Blind-Spot Alert Daytime Running Lights ParkSense Park Assist Power Steering Leather ParkView Back-Up Camera Uconnect Navigation System Keyless Entry Automatic 8-Spd Power Liftgate Release Knee Air Bags Air Conditioning SiriusXM Satellite Tilt & Telescoping Wheel"
     ],
     "description": "We have quality used cars  carros  pickup trucks  camionetas  trocas & SUVs for sale. We offer Chevrolet Ford GMC Honda RAM Cadillac Hyundai infiniti Kia Toyota Nissan Mazda Dodge and more!Call (786) 428-4008 to schedule a test drive today! Financing options are available for everybody! - Llmanos al (786) 428-4008 para programar una prueba de manejo hoy mismo. Ofrecemos opciones de financiamiento para todos!Internet prices are based on four thousands dollars down. Prices does not include dealer fee  sales taxes  electronic filing fee  registration fee",
     "type": "SUV"
